@@ -72,7 +72,7 @@ module.exports = function(grunt) {
       },
       less: {
         files: [
-          'assets/less/*.less'
+          'assets/less/*.less', '!_site/**/css/*.css'
         ],
         tasks: ['recess']
       },

@@ -97,7 +97,7 @@ exclude: [
   "README.md", "LICENSE",
   "config", "log", "lib", 
   "test", 
-#  "less", 
+  "less", 
  # 'css',
 #  'sass',
 #  'js',
