@@ -23,7 +23,7 @@ tmp
 _site	# Jekyll-generated static site files
 debug
 build
-assets
+# assets
 Gemfile.lock
 env/*
 !env/sample.sh
