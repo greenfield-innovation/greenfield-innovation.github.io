@@ -20,10 +20,11 @@ node_modules
 bower_components
 .sass-cache
 tmp
-_site	# Jekyll-generated static site files
+_site
 debug
 build
 # assets
 Gemfile.lock
 env/*
 !env/sample.sh
+# _site contains Jekyll-generated static site files

@@ -5,8 +5,8 @@ title: About Greenfield Innovation
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2014-06-01
 image:
-  feature: summer_field_1920x1170_progressive.jpg
-  credit: Wallpaperstock.net
+  feature: 
+  credit: 
   creditlink: 
 ---
 
