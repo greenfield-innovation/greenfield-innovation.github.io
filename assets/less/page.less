@@ -30,9 +30,10 @@ p {
 		display: inline-block;
 		vertical-align: top;
 		margin: 0 0 50px;
-		padding: 32px 4px 15px 10px;
+		padding: 0px 4px 10px 10px;
 		background-color: @nav-background-color;
-		.rounded(0 0 45px 0);
+		border-top: 0px solid @nav-background-color;
+		.rounded(0 0 35px 0);
 		.clearfix();
 	}
 	li {
@@ -56,6 +57,15 @@ p {
 			background-color: lighten(@black, 10);
 		}
 	}
+}
+.navigation-wrapper #site-nav.opened ul {
+	.clearfix();
+	border-top: 32px solid @nav-background-color;
+}
+.navigation-wrapper #site-nav.closed ul {
+	.clearfix();
+	padding-top: .5em;
+	border-top: 0px solid @nav-background-color;
 }
 // Responsive nav toggle stuff
 #site-nav {
