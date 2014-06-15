@@ -8,6 +8,8 @@ search:           false   #TODO: change when enough content & search bugs fixed.
 #url:              //localhost:4000  #local dev
 url:              //greenfieldinnovation.com
 
+#TEST:  Add trivial edit (comment) to yml, to test whether it will trigger a site rebuild on github
+
 # Owner/author information
 owner:
   name:           Monte Hayward
