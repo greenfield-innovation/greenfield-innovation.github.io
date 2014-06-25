@@ -9,7 +9,7 @@ search:           false   #TODO: change when enough content & search bugs fixed.
 url:              //greenfieldinnovation.com
 
 #WORKAROUND:  Add trivial edit (comment) to yml, to test whether it will trigger a site rebuild on github
-#             Tue Jun 24 20:05:18 CDT 2014
+#             Tue Jun 24 20:09:11 CDT 2014
 
 
 # Owner/author information
