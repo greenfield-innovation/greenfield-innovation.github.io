@@ -5,7 +5,7 @@ disqus_shortname:
 search:           false   #TODO: change when enough content & search bugs fixed.
 # Change url to your domain. Leave localhost server or blank when working locally.
 # You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
-#url:              //localhost:4000  #local dev
+# url:              //localhost:4000  #local dev
 url:              //greenfieldinnovation.com
 
 #TEST:  1. Add trivial edit (comment) to yml, to test whether it will trigger a site rebuild on github
@@ -17,9 +17,8 @@ owner:
   #TODO: avatar:         bio-photo.jpg
   email:          monte@montehayward.com
   # Social networking links used in footer. Update and remove as you like.
-  # https://angel.co/greenfield-innovation
+  angelco:  greenfield-innovation
   twitter:
-  # angelco:  greenfield-innovation   #TODO: custom social link?
   facebook:
   github:
   stackexchange:
