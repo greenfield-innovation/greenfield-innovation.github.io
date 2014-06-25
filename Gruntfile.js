@@ -119,11 +119,7 @@ module.exports = function(grunt) {
         }
       },
       html: {
-        files: ['**/*.html', '!_site/**/*.html'],
-        options: {
-          compile: true,
-          compress: true
-        }
+        files: ['**/*.html', '!_site/**/*.html']
       },
       less: {
         files: [
