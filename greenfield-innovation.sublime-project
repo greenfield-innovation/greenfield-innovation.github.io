@@ -2,8 +2,10 @@
 	"folders":
 	[
 		{
+			// Sublime Text 3
 			"follow_symlinks": true,
 			"path": "."
+
 		}
 	]
 }
