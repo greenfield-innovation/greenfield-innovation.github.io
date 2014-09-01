@@ -94,7 +94,7 @@ module.exports = function(grunt) {
     // inlinecss: {
     //   main: {
     //     options: {
-    //       url: 'file:///Users/monte/GoogleDrive/Sites/greenfield-innovation.github.io/_site/assets/css/',
+    //       url: '_site/assets/css/',
     //       removeLinkTags: false
     //     },
     //     files: {
