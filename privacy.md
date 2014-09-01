@@ -21,7 +21,7 @@ This site will not facilitate the merging of personally-identifiable information
 *	Google Analytics
 *	Google Display Advertising cookie
 *	Google Analytics Demographics and Interest Reporting in aggregate (e.g. "Session Interest Categories : 4.5% Sports/ Individual Sports/
-Runnoing")
+Running")
 
 No further usage of the information is planned.
 
