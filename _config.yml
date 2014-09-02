@@ -7,8 +7,9 @@ search:           false   #TODO: change when enough content & search bugs fixed.
 # Change url to your domain. Leave localhost server or blank when working locally.
 # You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
 # Serving
+url:              ""
 #url:              //greenfieldinnovation.com
-url:             //greenfield.local:4900  #local dev
+#url:             //greenfield.local:4900  #local dev
 # detach:  false
 port:    4900
 #host:    0.0.0.0
@@ -17,6 +18,10 @@ port:    4900
 
 #WORKAROUND:  Add trivial edit (comment) to yml, to test whether it will trigger a site rebuild on github
 #             Tue Jun 24 20:09:11 CDT 2014
+
+corp:
+  llc:            Expinnovate LLC
+  dba:            Greenfield Innovation
 
 
 # Owner/author information
@@ -46,13 +51,13 @@ bing_verify:
 #  Defaults appear not to work as described.
 #  http://jekyllrb.com/docs/configuration/#frontmatter-defaults
 # defaults:
-#   -
-#     scope:
-#       path: "" # empty string for all files
-#     values:
-#       layout: "page"
-      # title: "Greenfield Innovation"
-      # tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
+#  -
+#    scope:
+#      path: ""
+#      type: "posts"
+#    values:
+#      tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
+#      layout: "page"
       # image:
       #   background: summer_field_1920x1170_progressive.jpg
       #   credit: Wallpaperstock.net
@@ -70,8 +75,8 @@ links:
     url:  /about/
   - title: Contact
     url: /contact/
-  - title: Blog
-    url: /articles/
+#  - title: Blog
+#    url: /blog/
 
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
@@ -82,6 +87,7 @@ markdown:    kramdown
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink:   /:categories/:title/
+relative_permalinks: true
 
 kramdown:
   auto_ids: true
