@@ -1,9 +1,9 @@
 ---
 layout: page
 permalink: /about/
-title: About Greenfield Innovation
+title: About
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
-modified: 2014-06-01
+modified: 2014-09-29
 image:
   feature: 
   credit: 

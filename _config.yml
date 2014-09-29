@@ -1,4 +1,4 @@
-title:            Greenfield Innovation
+title:            gig&#58; Greenfield Innovation Group
 description:      Full-stack development that puts experience first.
 logo:             site-logo.png
 disqus_shortname:
@@ -11,7 +11,7 @@ url:              ""
 #url:              //greenfieldinnovation.com
 #url:             //greenfield.local:4900  #local dev
 # detach:  false
-port:    4900
+# port:    4900
 #host:    0.0.0.0
 #baseurl: "" # does not include hostname
 
@@ -21,7 +21,7 @@ port:    4900
 
 corp:
   llc:            Expinnovate LLC
-  dba:            Greenfield Innovation
+  dba:            Greenfield Innovation Group
 
 
 # Owner/author information

@@ -3,7 +3,7 @@ layout: page
 permalink: /
 title:
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer, SaaS]
-modified: 2014-06-13
+modified: 2014-09-29
 image:
   feature:
   credit:

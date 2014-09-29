@@ -2,10 +2,11 @@
 layout: page
 permalink: /services/
 title: Services
-modified: 2014-09-01
+tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
+modified: 2014-09-29
 ---
 
-Greenfield Innovation can help jump start your SaaS product rollout.
+Greenfield Innovation Group can help jump start your SaaS product rollout.
 
 ###	Dev-On-Demand
 Development powerhouse when you need it; Zero overhead when you don't.
