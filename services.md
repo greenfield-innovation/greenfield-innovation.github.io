@@ -32,3 +32,6 @@ A well-written and spoken individual comprehends your vision quickly, writes cri
 *	Web development
 *	Mentoring
 
+### Payment Systems Readiness
+Get ready to achieve the highest standard, with the help of [gig PCI Preflight](pci-preflight) services.
+
