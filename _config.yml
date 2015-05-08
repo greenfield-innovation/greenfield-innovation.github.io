@@ -11,7 +11,7 @@ search:           false   #TODO: change when enough content & search bugs fixed.
 url:              //greenfieldinnovation.com
 #url:             //greenfield.local:4900  #local dev
 # detach:  false
-port:    4900
+# port:    4900
 #host:    0.0.0.0
 #baseurl: "" # does not include hostname
 
