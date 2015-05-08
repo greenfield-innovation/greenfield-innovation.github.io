@@ -23,6 +23,9 @@ module.exports = function(grunt) {
           'assets/css/main.min.css': [
             'assets/less/main.less'
           ]
+//,
+//           'assets/examples/fw/styles/main.min.css':
+//	  ['assets/examples/fw/styles/main.scss']
         }
       }
     },
@@ -33,7 +36,13 @@ module.exports = function(grunt) {
           'assets/js/scripts.min.js': [
             'assets/js/plugins/*.js',
             'assets/js/_*.js'
-          ]
+          ],
+
+	  'assets/examples/fw/scripts/main.min.js':
+	  ['assets/examples/fw/scripts/main.js'],
+
+	  'assets/examples/fw/data/data.min.js':
+	  ['assets/examples/fw/data/*.js'],
         }
       }
     },
@@ -123,7 +132,8 @@ module.exports = function(grunt) {
       },
       less: {
         files: [
-          'assets/less/*.less', '!_site/**/css/*.css'
+          'assets/less/*.less', '!_site/**/css/*.css',
+	  'assets/examples/fw/style/*.scss', '!_site/assets/examples/style/*.css'
         ],
         tasks: ['recess']
       },
