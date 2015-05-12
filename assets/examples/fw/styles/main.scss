@@ -26,7 +26,7 @@ label {
   width: 1000px;
   height: 30px;
   polygon{
-	cursor: pointer;
+    cursor: pointer;
   }
 }
 
@@ -50,8 +50,8 @@ label {
   font-size: 12px;
   width: 1000px;
   text {
-	font-weight: 400;
-	letter-spacing: .02em;
+    font-weight: 400;
+    letter-spacing: .02em;
   }
 }
 
@@ -59,19 +59,19 @@ label {
 rect {
   stroke: #fff;
   &:hover {
-	cursor: pointer;
+    cursor: pointer;
   }
 }
 
 .children {
   rect {
-	&.parent {
-	  fill: none;
-	}
-	&.child { 
-	  opacity: 1;
-	  fill-opacity: 1;
-	}
+    &.parent {
+      fill: none;
+    }
+    &.child {
+      opacity: 1;
+      fill-opacity: 1;
+    }
   }
 }
 
@@ -80,11 +80,11 @@ text {
   font-family: 'Helvetica Neue', sans-serif;
   font-weight: 500;
   &.currency {
-	font-weight: 300;
+    font-weight: 300;
   }
 }
 
-  
+
 .health-care { fill: #fb8072 }
 .telecommunication-services { fill: #BEB9DB }
 .financials {fill: #B2E061 }

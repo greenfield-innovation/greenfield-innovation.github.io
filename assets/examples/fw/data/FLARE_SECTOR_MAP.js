@@ -59,12 +59,12 @@ var flareSectorMap = function(){
               },
               {
                 "name": "Construction Materials",
-                 "sector_id": 15,
+                "sector_id": 15,
                 "children": [{"name": "Construction Materials" ,"sector_id": 15}]
               },
               {
                 "name": "Containers & Packaging",
-                 "sector_id": 15,
+                "sector_id": 15,
                 "children": [
                   {"name": "Metal & Glass Containers" ,"sector_id": 15},
                   {"name": "Paper Packaging" ,"sector_id": 15}
@@ -72,7 +72,7 @@ var flareSectorMap = function(){
               },
               {
                 "name": "Metals & Mining",
-                 "sector_id": 15,
+                "sector_id": 15,
                 "children": [
                   {"name": "Aluminum", "sector_id": 15},
                   {"name": "Diversified Metals & Mining", "sector_id": 15},
@@ -261,7 +261,7 @@ var flareSectorMap = function(){
                 "children": [
                   {
                     "name": "Apparel & Luxury Goods",
-                  "sector_id": 25,
+                    "sector_id": 25,
                     "children": [
                       {
                         "name": "Apparel",
@@ -329,7 +329,7 @@ var flareSectorMap = function(){
           },
           {
             "name": "Retailing",
-              "sector_id": 25,
+            "sector_id": 25,
             "children": [
               {
                 "name": "Distributors",

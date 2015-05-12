@@ -13,5 +13,5 @@ image:
 ## [Jump start your SaaS](/about/)
 [Development powerhouse](/about/) when you need it; Zero overhead when you don't.
 
-###	[Full-stack Software Development](/about/)
+### [Full-stack Software Development](/about/)
 <em>[Get Started &gt;&gt;](/contact/)</em>

@@ -35,38 +35,38 @@ module.exports = function(grunt) {
             'assets/js/_*.js'
           ],
 
-	  'assets/examples/fw/scripts/main.min.js':
-	  ['assets/examples/fw/scripts/main.js'],
+          'assets/examples/fw/scripts/main.min.js':
+              ['assets/examples/fw/scripts/main.js'],
 
-	  'assets/examples/fw/data/data.min.js':
-	  [
-		  'assets/examples/fw/data/SUB_INDUSTRY_MAP.js',
-		  'assets/examples/fw/data/FLARE_SECTOR_MAP.js',
-		  'assets/examples/fw/data/symbol2subindustry.js',
-		  'assets/examples/fw/data/holdings.js'
-	  ]
+          'assets/examples/fw/data/data.min.js':
+              [
+                'assets/examples/fw/data/SUB_INDUSTRY_MAP.js',
+                'assets/examples/fw/data/FLARE_SECTOR_MAP.js',
+                'assets/examples/fw/data/symbol2subindustry.js',
+                'assets/examples/fw/data/holdings.js'
+              ]
         }
       }
     },
-    // imageoptim: {        // replaces original files
-    //   options: {
-    //     quitAfter: true
-    //   },
-    //   allPngs: {
-    //     options: {
-    //       imageAlpha: true,
-    //       jpegMini: false
-    //     },
-    //     src: ['images/{,*/}*.{png,gif}']
-    //   },
-    //   allJpgs: {
-    //     options: {
-    //       imageAlpha: false,
-    //       jpegMini: true
-    //     },
-    //     src: ['images/{,*/}*.{jpg,jpeg}']
-    //   }
-    // },
+// imageoptim: {        // replaces original files
+//   options: {
+//     quitAfter: true
+//   },
+//   allPngs: {
+//     options: {
+//       imageAlpha: true,
+//       jpegMini: false
+//     },
+//     src: ['images/{,*/}*.{png,gif}']
+//   },
+//   allJpgs: {
+//     options: {
+//       imageAlpha: false,
+//       jpegMini: true
+//     },
+//     src: ['images/{,*/}*.{jpg,jpeg}']
+//   }
+// },
     imagemin: {
       dist: {
         options: {
@@ -91,28 +91,28 @@ module.exports = function(grunt) {
         }]
       }
     },
-        //'assets/css/main.min.css'
-    // uncss: {
-    //   dist: {
-    //     options: {
-    //       stylesheets: ['assets/css/main.min.css']  // begin with the output of recess
-    //     },
-    //     files: {
-    //       'assets/css/main.uncss.css' : ['_site/**.html'] //expect main.min.css referenced in head.html
-    //     }
-    //   }
-    // },
-    // inlinecss: {
-    //   main: {
-    //     options: {
-    //       url: '_site/assets/css/',
-    //       removeLinkTags: false
-    //     },
-    //     files: {
-    //       '_includes/head_INLINE-CSS.html': '_includes/head.html'
-    //     }
-    //   }
-    // },
+//'assets/css/main.min.css'
+// uncss: {
+//   dist: {
+//     options: {
+//       stylesheets: ['assets/css/main.min.css']  // begin with the output of recess
+//     },
+//     files: {
+//       'assets/css/main.uncss.css' : ['_site/**.html'] //expect main.min.css referenced in head.html
+//     }
+//   }
+// },
+// inlinecss: {
+//   main: {
+//     options: {
+//       url: '_site/assets/css/',
+//       removeLinkTags: false
+//     },
+//     files: {
+//       '_includes/head_INLINE-CSS.html': '_includes/head.html'
+//     }
+//   }
+// },
     inline: {
       options: {
         cssmin: true
@@ -135,7 +135,7 @@ module.exports = function(grunt) {
       less: {
         files: [
           'assets/less/*.less', '!_site/**/css/*.css',
-	  'assets/examples/fw/style/*.scss', '!_site/assets/examples/style/*.css'
+          'assets/examples/fw/style/*.scss', '!_site/assets/examples/style/*.css'
         ],
         tasks: ['recess']
       },
@@ -157,26 +157,26 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load tasks
+// Load tasks
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-recess');
-  // grunt.loadNpmTasks('grunt-uncss');
+// grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  //grunt.loadNpmTasks('grunt-imageoptim');
-  //grunt.loadNpmTasks('grunt-svgmin');
+//grunt.loadNpmTasks('grunt-imageoptim');
+//grunt.loadNpmTasks('grunt-svgmin');
 
-  // Register tasks
+// Register tasks
   grunt.registerTask('default', [
     'clean',
     'recess',
     'uglify',
     'imagemin',
-    //'imageoptim',
-    // 'uncss',
+//'imageoptim',
+// 'uncss',
     'inline'
   ]);
   grunt.registerTask('dev', [
