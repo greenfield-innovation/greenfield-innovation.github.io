@@ -1,13 +1,12 @@
 ( function( d3, HOLDINGS, SUB_INDUSTRY_MAP, SECTOR_IDS, symbol2subindustry, flareSectorMap ) {
 'use strict';
 	
-// Allocation Structure:Sector / Group / Industry / Subindustry / (Security)
+// Allocation Structure: Sector / Group / Industry / Subindustry / (Security)
 /**
  * Zoomable Treemap adapted from Mike Bostock
  * http://bost.ocks.org/mike/treemap/
  */
 var symbols = d3.keys(HOLDINGS).join(',');
-//var svgScratch = d3.select('body').append('svg').remove();  //space to make els outside of DOM
 
 var yqlSelect = ['select symbol, LastTradePriceOnly from yahoo.finance.quotes where symbol in ("',
 		symbols,
@@ -33,7 +32,7 @@ function find(collection, idName, id, findAll, retrieveField){
 	}
 	return all;
 }
-
+	
 // determines if white or black will be better contrasting color
 function getContrastYIQ(hexcolor){
 	hexcolor = hexcolor.replace('#', '');
@@ -44,13 +43,16 @@ function getContrastYIQ(hexcolor){
 	return (yiq >= 128) ? 'black' : 'white';
 }
 
-var     width = 1000,
+var width = 1000,
 		height = 500,
 		formatNumber = d3.format(',d'),
 		formatCurrency = d3.format('$,d'),
 		transitioning;
-
-var colorScale = d3.scale.ordinal().domain(SECTOR_IDS).range(['#a6cee3','#1f78b4','#b2df8a','#33a02c','#fb9a99','#e31a1c','#fdbf6f','#ff7f00','#cab2d6','#6a3d9a','#ffffff', /*'#ffff99',*/'#b15928']);
+	
+var colorScale = d3.scale.ordinal()
+	.domain(SECTOR_IDS)
+	.range(PALETTE);
+	
 var x = d3.scale.linear().domain([0, width]).range([0, width]);
 var y = d3.scale.linear().domain([0, height]).range([0, height]);
 
@@ -62,9 +64,9 @@ var treemap = d3.layout.treemap()
 	.round(false);
 
 var breadCrumbTrail = d3.select('#breadcrumbTrail').append('svg:svg')
-    .attr('width', width)
-    .attr('height', 30)
-    .attr('class', 'trail');
+	.attr('width', width)
+	.attr('height', 30)
+	.attr('class', 'trail');
 
 var legend = d3.select('#legend').append('svg')
 	.attr('width', width)
@@ -163,18 +165,17 @@ function run(){
 		}
 
 		//polygon points for arrows. e.g. '0,0 116,0 123,15 116,30 0,30 7,15';
-		function pointsCalc(textWidth) {
-		    var a = [];
-			textWidth += 14;
-		    a.push('0,0');
-		    a.push(textWidth + ',0');
-		    a.push(textWidth + 7 + ',' + 15);
-		    a.push(textWidth + ',' + 30);
-		    a.push('0,' + 30);
-		    a.push(7 + ',' + 15);
-		    return a.join(' ');
-
-		}
+function pointsCalc(textWidth) {
+var a = [];
+textWidth += 14;
+a.push('0,0');
+a.push(textWidth + ',0');
+a.push(textWidth + 7 + ',' + 15);
+a.push(textWidth + ',' + 30);
+a.push('0,' + 30);
+a.push(7 + ',' + 15);
+return a.join(' ');
+}
 		function updateBreadCrumbTrail(d) {
 			lastX = 0;
 			var objPath = [];
@@ -190,14 +191,14 @@ function run(){
 				var g = d3.select('.trail').append('g');
 					g.datum(obj);
 
-				var arrow = g.append('polygon').attr('fill', function(obj) { return colorScale(obj.sector_id); } ).style('stroke', '#dddddd');
+				var arrow = g.append('polygon').attr('fill', function(obj) { return colorScale(obj.sector_id || 0); } ).style('stroke', '#dddddd');
 				var txt = g.append('text').text('' + obj.name)
 					.attr('y', 15)
 					.attr('x', o > 0 ? 12 : 8)
 					.attr('dy', '0.35em')
 					.attr('class', 'breadcumb-text')
 					.style('fill', function(obj) {
-							return getContrastYIQ(colorScale(obj.sector_id));
+							return getContrastYIQ(colorScale(obj.sector_id || 0));
 						});
 				var textWidth = txt[0][0].offsetWidth;
 				arrow.attr('points', pointsCalc(textWidth)).on('click' , function(d){goUp(d)});
@@ -217,7 +218,7 @@ function run(){
 					c.dx *= d.dx;
 					c.dy *= d.dy;
 					c.parent = d;
-					c.fill = getContrastYIQ( colorScale(c.sector_id) );
+					c.fill = getContrastYIQ( colorScale(c.sector_id || 0) );
 					layout(c);
 				});
 			}
@@ -246,7 +247,7 @@ function run(){
 
 			g.append('text')
 				.attr('dy', '.75em')
-				.attr('fill', getContrastYIQ(colorScale(d.sector_id)))
+				.attr('fill', getContrastYIQ(colorScale(d.sector_id || 0)))
 				.text(function (d) {
 					if (d.qty) {
 						return [d.symbol, '$' + formatNumber(d.value)].join(' ');
@@ -261,10 +262,11 @@ function run(){
 				.text(function (d) { return formatCurrency(d.value); })
 				.call(text);
 
-			g.append('rect')
-				.attr('class', 'parent')
-				.attr('fill', function(d) { return colorScale(d.sector_id)} )
-				.call(rect);
+			// this rect seems extraneous.			
+			//g.append('rect')
+			//	.attr('class', 'parent')
+			//	.attr('fill', function(d) { return colorScale(d.sector_id || 0)} )
+			//	.call(rect);
 			
 			function transition(d, isUp) {
 				if (transitioning || !d){ return; }
@@ -308,7 +310,7 @@ function run(){
 				root._children.forEach(function(d){
 					var wrekd = lg.append('rect')
 						.attr('height', '40px')
-						.attr('fill', colorScale(d.sector_id))
+						.attr('fill', colorScale(d.sector_id || 0))
 						.attr('y', 0)
 						.attr('overflow-x', 'visible')
 						.datum(d)
@@ -318,7 +320,7 @@ function run(){
 							return find(SUB_INDUSTRY_MAP, 'sector_id', d.sector_id, false, 'name');
 						})
 						.attr('y', 17)
-						.attr('fill', getContrastYIQ(colorScale(d.sector_id)))
+						.attr('fill', getContrastYIQ(colorScale(d.sector_id || 0)))
 						.on('click', transition);
 					var txtWidth = txt[0][0].offsetWidth;
 					wrekd.attr('width', (txtWidth + 17) ).attr('x', lastX);
@@ -337,7 +339,7 @@ function run(){
 				.attr('y', function (d) { return y(d.y) + 6 })
 				.attr('fill',
 				function(d) {
-					return getContrastYIQ( colorScale(d.sector_id) );
+					return getContrastYIQ( colorScale(d.sector_id || 0) );
 				}
 			);
 		}
@@ -347,7 +349,7 @@ function run(){
 				.attr('y', function (d) { return y(d.y) })
 				.attr('width', function (d) { return x(d.x + d.dx) - x(d.x) })
 				.attr('height', function (d) { return y(d.y + d.dy) - y(d.y) })
-				.attr('fill', function(d) { return colorScale(d.sector_id) } );
+				.attr('fill', function(d) { return colorScale(d.sector_id || 0) } );
 			return rec;
 		}
 		
@@ -359,7 +361,7 @@ function run(){
 	
 	});
 }
-run();	
+run();
 })(d3, HOLDINGS, SUB_INDUSTRY_MAP, SECTOR_IDS, symbol2subindustry, flareSectorMap);
 
 

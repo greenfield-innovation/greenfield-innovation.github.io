@@ -1,4 +1,17 @@
-var SECTOR_IDS = [10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+var SECTOR_IDS = [0, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55];
+var PALETTE = [
+    '#aaaaaa', //0 / neutral
+    '#ccebc5', //10 energy
+    '#fdb462', //15 materials
+    '#80b1d3', //20 industrials
+    '#bc80bd', //25 consumer discretionary
+    '#fccde5', //30 consuner-staples
+    '#fb8072', //35 healthcare
+    '#b3de69', //40 financials
+    '#ffed6f', //45 information-technology
+    '#8dd3c7', //50 telecommunication-services
+    '#bebada'  //55 utilities
+];
 var SUB_INDUSTRY_MAP = {
   "10101010" : {
       "name" : "Oil & Gas Drilling",
