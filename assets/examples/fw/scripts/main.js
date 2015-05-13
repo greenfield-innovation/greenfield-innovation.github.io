@@ -1,14 +1,11 @@
 ( function( d3, HOLDINGS, SUB_INDUSTRY_MAP, SECTOR_IDS, symbol2subindustry, flareSectorMap ) {
   'use strict';
-
-// Allocation Structure: Sector / Group / Industry / Subindustry / (Security)
-  /**
-   * Zoomable Treemap adapted from Mike Bostock
-   * http://bost.ocks.org/mike/treemap/
-   */
+  // Allocation Structure: Sector / Group / Industry / Subindustry / (Security)
+  
+  /* Zoomable Treemap adapted from Mike Bostock http://bost.ocks.org/mike/treemap/  */
   var symbols = d3.keys(HOLDINGS).join(',');
 
-  var yqlSelect = ['select symbol, LastTradePriceOnly from yahoo.finance.quotes where symbol in ("',
+  var yqlSelect = ['select symbol, Name, LastTradePriceOnly from yahoo.finance.quotes where symbol in ("',
                    symbols,
                    '")'];
   var yqlUrl = ['https://query.yahooapis.com/v1/public/yql?q=', yqlSelect.join(' '), '&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys'];
@@ -63,9 +60,9 @@
       .ratio(height / width * 0.5 * (1 + Math.sqrt(5)))
       .round(false);
 
-  var breadCrumbTrail = d3.select('#breadcrumbTrail').append('svg:svg')
+  var breadCrumbTrail = d3.select('#breadcrumbTrail').append('svg')
       .attr('width', width)
-      .attr('height', 30)
+      .attr('height', '30px')
       .attr('class', 'trail');
 
   var legend = d3.select('#legend').append('svg')
@@ -86,7 +83,7 @@
     d3.json(yqlUrl.join(''), function (yahooResponse) {
       // Yahoo format {"query":{"count":1,"created":"2015-02-25T00:05:52Z","lang":"en-US","results":{"quote":{"symbol":"AAPL","LastTradePriceOnly":"132.17"}}}}
       if(!yahooResponse.query.results){
-        run();	// Re-try upon null result: {"query":{"count":0,"created":"2015-02-25T22:33:20Z","lang":"en-us","results":null}}
+        run();  // Re-try upon null result: {"query":{"count":0,"created":"2015-02-25T22:33:20Z","lang":"en-us","results":null}}
       }
       var prices = yahooResponse.query.results.quote;
 
@@ -97,6 +94,7 @@
           if (HOLDINGS.hasOwnProperty(symbol)) {
             var holding = HOLDINGS[symbol];
             holding.symbol = symbol;
+            holding.name = find(prices, 'symbol', symbol, false, 'Name');
             holding.price = find(prices, 'symbol', symbol, false, 'LastTradePriceOnly');
             holding.sub_industry_id = symbol2subindustry[symbol];
             holding.sub_industry_name = SUB_INDUSTRY_MAP[holding.sub_industry_id].name;
@@ -244,29 +242,23 @@
             .attr('class', 'child')
             .call(rect);
 
-
         g.append('text')
+            .attr('class', function (d) { return d.qty ? 'holding' : 'binLabel' })
             .attr('dy', '.75em')
             .attr('fill', getContrastYIQ(colorScale(d.sector_id || 0)))
             .text(function (d) {
-              if (d.qty) {
-                return [d.symbol, '$' + formatNumber(d.value)].join(' ');
+              if (d.qty) {  // it is a holding
+                return d.name + ' (' + d.symbol + ')'
               }
               return d.name;
             })
             .call(text);
-
+        
         g.append('text')
             .attr('class', 'currency')
             .attr('dy', '1.75em')
             .text(function (d) { return formatCurrency(d.value); })
             .call(text);
-
-        // this rect seems extraneous.			
-        //g.append('rect')
-        //	.attr('class', 'parent')
-        //	.attr('fill', function(d) { return colorScale(d.sector_id || 0)} )
-        //	.call(rect);
 
         function transition(d, isUp) {
           if (transitioning || !d){ return; }
@@ -309,7 +301,7 @@
           var lg = legend.append('g').attr('display', 'table-cell');
           root._children.forEach(function(d){
             var wrekd = lg.append('rect')
-                .attr('height', '40px')
+                .attr('height', 30)
                 .attr('fill', colorScale(d.sector_id || 0))
                 .attr('y', 0)
                 .attr('overflow-x', 'visible')
@@ -329,10 +321,11 @@
           });
           isLegendComplete = true;
         }
+        
         !isLegendComplete && buildLegend(root);
         updateBreadCrumbTrail(d);
         return g;
-      } //display
+      }
 
       function text(str) {
         str.attr('x', function (d) { return x(d.x) + 6 })

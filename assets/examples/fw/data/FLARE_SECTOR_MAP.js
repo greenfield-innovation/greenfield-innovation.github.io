@@ -24,12 +24,13 @@ var flareSectorMap = function(){
                 "children": [
                   {
                     "name": "Gas & Consumable Fuels",
+                    "sector_id": 10,
                     "children": [
-                      {"name": "Integrated Oil & Gas", value: 90101},
-                      {"name": "Oil & Gas Exploration & Production"},
-                      {"name": "Oil & Gas Refining & Marketing"},
-                      {"name": "Oil & Gas Storage & Transportation"},
-                      {"name": "Coal & Consumable Fuels"}
+                      {"name": "Integrated Oil & Gas", value: 90101, "sector_id": 10},
+                      {"name": "Oil & Gas Exploration & Production","sector_id": 10},
+                      {"name": "Oil & Gas Refining & Marketing","sector_id": 10},
+                      {"name": "Oil & Gas Storage & Transportation","sector_id": 10},
+                      {"name": "Coal & Consumable Fuels","sector_id": 10}
                     ]
                   }
                 ]
