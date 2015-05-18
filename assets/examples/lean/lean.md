@@ -4,11 +4,9 @@ permalink: /examples/lean/
 title: Lean and Agile Development Cycle
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-15
-image:
-  feature: ""
-  caption: '“A startup is a human institution designed to create a new product or service under conditions of extreme uncertainty.” -- Eric Ries'
 ---
 
+> A startup is a human institution designed to create a new product or service under conditions of extreme uncertainty. -- Eric Ries
 
 ## Challenge
 

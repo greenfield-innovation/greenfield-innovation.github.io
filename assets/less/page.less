@@ -285,13 +285,11 @@ span + .entry-title {
 .entry-wrapper {
   margin: 0 auto 3em;
   .clearfix();
-  #page & {
-    @media @medium {
-      max-width: 760px;
-    }
-    @media @large {
-      max-width: 960px;
-    }
+  @media @medium {
+    max-width: 760px;
+  }
+  @media @large {
+    max-width: 90%;
   }
 }
 .entry-meta {
