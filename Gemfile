@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'github-pages'
 gem 'charlock_holmes'
-# Dependencies for html - pipeline https: //github.com/jch/html-pipeline#dependencies
+# Dependencies for html - pipeline https://github.com/jch/html-pipeline#dependencies
 gem "escape_utils"
 gem 'github-linguist'
 gem "rinku"              		#,              "~> 1.7",   :require => false

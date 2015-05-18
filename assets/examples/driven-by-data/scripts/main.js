@@ -41,7 +41,7 @@
   }
 
   var width = 1000,
-      height = 500,
+      height = 625,
       formatNumber = d3.format(',d'),
       formatCurrency = d3.format('$,d'),
       transitioning;
@@ -74,7 +74,7 @@
 
   var svg = d3.select('#chart').append('svg')
       .attr('width', width)
-      .attr('height', 500)
+      .attr('height', height)
       .append('g')
       .attr('height', height)
       .style('shape-rendering', 'crispEdges');

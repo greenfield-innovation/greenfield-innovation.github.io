@@ -14,10 +14,17 @@ var navigation = responsiveNav("#site-nav", { // Selector: The ID of the wrapper
   close: function(){} // Function: Close callback
 });
 
-$('html').click(function() {
-  //Hide the menus if visible
+
+$('html').click(function(e) {
+  navigation.toggle(true);  //Hide the menus if visible
+});
+
+$('#nav-toggle').click(function(e) {
+  e.stopPropagation();
+  e.preventBubble();
   navigation.toggle();
 });
+
 
 $('#site-nav').click(function(event){
     event.stopPropagation();
@@ -25,5 +32,5 @@ $('#site-nav').click(function(event){
 
 // FitVids options
 $(function() {
-	$("article").fitVids();
+  $("article").fitVids();
 });

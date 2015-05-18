@@ -56,16 +56,38 @@ p {
     &:hover {
       background-color: lighten(@black, 10);
     }
+    &.site-logo-sm {
+      float: right;
+      img {
+        width: 55px;
+        height: 55px;
+        clear:none;
+        -webkit-animation-duration: 1s;
+        -moz-animation-duration: 1s;
+        -o-animation-duration: 1s;
+        animation-duration: 1s;
+        -webkit-animation-delay: .05s;
+        -moz-animation-delay: .05s;
+        -o-animation-delay: .05s;
+        animation-delay: .05s;
+        border: medium none;
+      }
+      &:hover {
+        background-color: transparent;
+      }
+    }
   }
 }
 .navigation-wrapper #site-nav.opened ul {
   .clearfix();
   border-top: 32px solid @nav-background-color;
+  float: left;
 }
 .navigation-wrapper #site-nav.closed ul {
   .clearfix();
   padding-top: .5em;
   border-top: 0px solid @nav-background-color;
+  float: left;
 }
 // Responsive nav toggle stuff
 #site-nav {
@@ -159,6 +181,8 @@ p {
     }
   }
 }
+
+
 .site-title {
   margin-bottom: 0;
   -webkit-animation-duration: 1s;
@@ -194,6 +218,9 @@ p {
 // --------------------------------------------------
 #main {
   .clearfix();
+  @media @forcepadding {
+    padding: 0 1.5%;  //text not to edge of mobile screen
+  }
 }
 .entry,
 .hentry {
@@ -205,10 +232,10 @@ p {
   margin: 20px 0 0;
   width: 100%;
   @media @medium {
-    margin-top: -75px;
+    margin-top: 0;
   }
   @media @large {
-    margin-top: -145px;
+    margin-top: -40px;
   }
 }
 .entry-header {
@@ -244,28 +271,27 @@ span + .entry-title {
     color: @black;
     text-decoration: underline;
   }
-  @media @medium {
-    max-width: 600px;
-    .font-rem(52);
-  }
-  @media @large {
-    max-width: 800px;
-    .font-rem(68);
+  #page & {
+    @media @medium {
+      max-width: 600px;
+      .font-rem(52);
+    }
+    @media @large {
+      max-width: 800px;
+      .font-rem(68);
+    }
   }
 }
 .entry-wrapper {
   margin: 0 auto 3em;
-  max-width: 440px;
-  padding-right: 20px;
-  padding-left: 20px;
   .clearfix();
-  @media @medium {
-    max-width: 760px;
-    padding-right: 60px;
-    padding-left: 60px;
-  }
-  @media @large {
-    max-width: 960px;
+  #page & {
+    @media @medium {
+      max-width: 760px;
+    }
+    @media @large {
+      max-width: 960px;
+    }
   }
 }
 .entry-meta {
@@ -342,7 +368,6 @@ span + .entry-title {
 #home,
 #page {
   .entry-title {
-    //		text-align: center;
     max-width: 100%;
   }
   .entry-content {

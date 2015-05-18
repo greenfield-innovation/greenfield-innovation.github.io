@@ -83,7 +83,7 @@ markdown:    kramdown
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink:   /:categories/:title/
-relative_permalinks: true
+relative_permalinks: false
 
 kramdown:
   auto_ids: true
