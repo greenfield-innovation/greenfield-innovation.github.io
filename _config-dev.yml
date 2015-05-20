@@ -74,12 +74,14 @@ links:
 #  - title: Blog
 #    url: /blog/
 
-
+source:      .
+destination: ./_site
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone:    America/Chicago
 future:      true
 highlighter: pygments
 markdown:    kramdown
+encoding:    utf-8
 
 # https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink:   /:categories/:title/
