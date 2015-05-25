@@ -172,6 +172,9 @@ module.exports = function(grunt) {
       },
       fontsProtected: {
         command: "cat assets/css/page.css assets/css/examples.css assets/fonts/fontawesome-4.3-subset-b64.css assets/css/font-awesome-subset.css  >> assets/css/main.min.css"
+      },
+      noJek: {
+        command: "touch _site/.nojekyll"
       }
     },
     htmlmin: {
@@ -222,7 +225,7 @@ module.exports = function(grunt) {
       'gh-pages': {
         options: {
           base: '_site',
-          push: false
+          push: true
         },
         // These files will get pushed to the `gh-pages` branch (the default).
         src: ['**']
@@ -307,6 +310,8 @@ module.exports = function(grunt) {
   /** PRODUCTION DEPLOYMENT **/
   grunt.registerTask('PROD', [
     'default',
+    'shell:jekyllStop',
+    'shell:noJek',
     'gh-pages'
   ]);
 
