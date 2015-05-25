@@ -21,7 +21,7 @@ modified: 2015-05-15
 * Establish a broad matrix of supported browsers
 * Share form via click, copy and paste
 
-![Branded Form Example](/assets/examples/secure/form-rr-branded.png){: title="Fully branded registration form"}
+<img src="form-rr-branded.png" title="Fully branded registration form" alt="Fully branded registration form" />
 
 ## Results
 * Concurrent rapid development iterations
@@ -30,4 +30,5 @@ modified: 2015-05-15
 * Faster load times
 * Core support for browsers more than a decade old
 * Rapid form sharing supports disaster response
-![Rapid Form Sharing Supports Disaster Response](/assets/examples/secure/form-viral.png){: title="Rapid Form Sharing Supports Disaster Response"}
+
+<img src="form-viral.png" title="Rapid Form Sharing Supports Disaster Response" alt="Rapid Form Sharing Supports Disaster Response" />

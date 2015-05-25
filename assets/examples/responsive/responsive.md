@@ -3,9 +3,7 @@ layout: examples
 permalink: /examples/responsive/
 title: Responsive Web App
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
-modified: 2015-05-15
-image:
-  feature: "responsive-ecommerce.png"
+modified: 2015-05-22
 ---
 
 
@@ -36,8 +34,8 @@ image:
 
 <div class="portfolio-list">
   <ul>
-    <li><a href="responsive-ecommerce/">Responsive eCommerce Web App
-        <img src="{{ site.url }}/assets/examples/responsive/responsive-ecommerce.png" alt="" />
+    <li><a href="responsive-ecommerce.png" target="_blank">Responsive eCommerce Web App
+        <img src="./responsive-ecommerce.png" alt="Mobile emulation during development" title="Mobile emulation during development" />
         <span class="tags">Ember, Handlebars, Elixir, Couchbase, Compare &amp; Buy</span>
       </a>
     </li>

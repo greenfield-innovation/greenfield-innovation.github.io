@@ -15,15 +15,18 @@ Thumbs.db
 *.pyc
 
 # Application specific files
+.idea
+*.sublime-project
+*.sublime-workspace
 venv
 node_modules
 bower_components
+.grunt    # temporary clone location
 .sass-cache
-tmp
-_site
+.tmp
 debug
 build
-# assets
+npm-debug.log
 Gemfile.lock
 env/*
 !env/sample.sh

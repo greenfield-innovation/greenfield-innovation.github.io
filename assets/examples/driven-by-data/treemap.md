@@ -12,9 +12,6 @@ image:
 ### Data Visualization: Portfolio Allocation
 
 
-<link rel="stylesheet" href="{{ site.url }}/assets/examples/driven-by-data/styles/main.min.css">
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
 
 <label><strong>My Portfolio</strong>: <i>Sector &gt; Group &gt; Industry &gt; Sub-industry &gt; Security</i></label>
 <aside>Click any cell to zoom in, or the top label to zoom out.</aside>
@@ -23,7 +20,5 @@ image:
 <div id="chart"></div>
 <div id="legend"></div>
 
-
-<script async src="{{ site.url }}/assets/examples/driven-by-data/data/data.min.js"></script>
-<script async src="{{ site.url }}/assets/examples/driven-by-data/scripts/main.min.js"></script>
+<script async src="./scripts/main.min.js"></script>
 

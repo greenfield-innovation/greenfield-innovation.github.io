@@ -18,13 +18,16 @@
     "grunt-contrib-htmlmin": "^0.4",
     "grunt-contrib-imagemin": "~0.2.0",
     "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.2",
-    "grunt-imageoptim": "^1.4.1",
-    "grunt-inline": "^0.3.3",
-    "grunt-recess": "~0.3.5",
+    "grunt-font-optimizer": "^0.2.8",
+    "grunt-fontoptim": "^0.1.0",
+    "grunt-gh-pages": "^0.10.0",
+    "grunt-inline": "^0.3.4",
     "grunt-shell": "^1.1.2",
     "grunt-svgmin": "~0.2.0",
-    "grunt-uncss": "^0.3.4"
+    "grunt-uncss": "^0.3.8",
+    "shelljs": "^0.2.6"
   }
 }

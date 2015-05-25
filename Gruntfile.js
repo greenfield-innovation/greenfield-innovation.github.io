@@ -1,7 +1,14 @@
 'use strict';
 module.exports = function(grunt) {
-
+    // builds in stages, using grunt and jekyll
+    // 0 src
+    //1  .tmp/1fat      //jekyll, fat dev build
+    //2. .tmp/2inline   //inline, uncompressed
+    //3  .tmp/3thin    //compress everything
+    //4  _site         //final, blessed by jekyll 
+  
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
     jshint: {
       options: {
         jshintrc: '.jshintrc'
@@ -13,39 +20,41 @@ module.exports = function(grunt) {
         '!assets/js/scripts.min.js'
       ]
     },
-    recess: {
+    less: {
       dist: {
         options: {
-          compile: true,
-          compress: true
+          compile: true,  // turn less into CSS
+          compress: false
         },
         files: {
-          'assets/css/main.min.css': [
-            'assets/less/main.less','assets/less/examples.less'
-          ]
-          ,
-          'assets/examples/driven-by-data/styles/main.min.css':
-          ['assets/examples/driven-by-data/styles/main.scss'] 
+            'assets/css/main.css' : ['assets/less/main.less'],
+            'assets/css/page.css' : ['assets/less/page.less'],
+            'assets/css/examples.css': ['assets/examples/driven-by-data/styles/main.scss']
         }
       }
     },
     uglify: {
       dist: {
+        options: {
+          mangle: false,
+          compress: false
+        },
         files: {
           'assets/js/scripts.min.js': [
+            'assets/js/vendor/modernizr-2.8.3.js',
+            'assets/js/vendor/jquery-1.11.3.min.js',
             'assets/js/plugins/*.js',
             'assets/js/_*.js'
           ],
-
           'assets/examples/driven-by-data/scripts/main.min.js':
-              ['assets/examples/driven-by-data/scripts/main.js'],
-
-          'assets/examples/driven-by-data/data/data.min.js':
               [
+                'assets/examples/driven-by-data/scripts/d3.min.js',
+                'assets/examples/driven-by-data/data/yahooResponseStatic.js',
                 'assets/examples/driven-by-data/data/SUB_INDUSTRY_MAP.js',
                 'assets/examples/driven-by-data/data/FLARE_SECTOR_MAP.js',
                 'assets/examples/driven-by-data/data/symbol2subindustry.js',
-                'assets/examples/driven-by-data/data/holdings.js'
+                'assets/examples/driven-by-data/data/holdings.js',
+                'assets/examples/driven-by-data/scripts/main.js'
               ]
         }
       }
@@ -60,7 +69,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'images/',
           src: '{,*/}*.{png,jpg,jpeg}',
-          dest: 'images/'
+          dest: '.tmp/1fat/images/'
         }]
       }
     },
@@ -70,80 +79,159 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'images/',
           src: '{,*/}*.svg',
-          dest: 'images/'
+          dest: '.tmp/1fat/images/'
         }]
       }
     },
-//'assets/css/main.min.css'
-// uncss: {
-//   dist: {
-//     options: {
-//       stylesheets: ['assets/css/main.min.css']  // begin with the output of recess
-//     },
-//     files: {
-//       'assets/css/main.uncss.css' : ['_site/**.html'] //expect main.min.css referenced in head.html
-//     }
-//   }
-// },
-    inline: {
-      options: {
-        //uglify: true,
-        cssmin: true
-      },
+    uncss: {
       dist: {
+        options : {
+          stylesheets  : ['../assets/css/source-sans-pro.css', '../assets/css/main.css'],
+          timeout      : 10000,
+          htmlroot     : '.',
+          verbose: true,
+          report       : 'min'
+        },
+        files: {
+          'assets/css/main.min.css': [
+            '_includes/browser-upgrade.html',
+            '_includes/disqus_comments.html',
+            '_includes/footer.html',
+            '_includes/uncss-ignore.html',
+            '_includes/head.html',
+            '_includes/navigation.html',
+            '_layouts/*.html',
+            'assets/**/*.md',
+            '*.md'
+          ]
+        }
+      }
+    },
+    inline: {
+      dist: {
+        expand: true,
+        options: {
+          tag: '',
+          verbose: true,
+          defer: true,
+          uglify: false,
+          cssmin: false,
+          exts: ['html', 'md']
+        },
         files: [{
           expand: true,
-          cwd:  '_includes_src/',
-          src: ['**/*.html'],
-          dest: '_includes/'
-        }]
+          cwd:  '.',
+          src: ['_includes/*.html', './*.md'],
+          dest: '.tmp/1fat'
+        },
+        {
+          expand: true,
+          cwd:  'assets',
+          src: ['**/*.md'],
+          dest: '.tmp/1fat/assets/'
+        }
+        ]
       }
     },
     shell: {
-      jekyllServe: {
-        command: 'jekyll serve --trace --config _config-dev.yml'
+      copy: {
+        command: 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/'
       },
       jekyllBuild: {
-        command: 'jekyll build'
+        command: 'jekyll build --safe --config _config-dev.yml -s .tmp/1fat -d .tmp/2inline'
+      },
+      jekyllServe: {
+        command: 'jekyll serve --safe --trace --config _config-dev.yml'
+      },
+      jekyllStop: {
+        command: "nohup killall jekyll"
+      },
+      fontsProtected: {
+        command: "cat assets/css/page.css assets/css/examples.css assets/fonts/fontawesome-4.3-subset-b64.css assets/css/font-awesome-subset.css  >> assets/css/main.min.css"
       }
     },
-    //htmlmin: {                                     // Task
-    //  dist: {                                      // Target
-    //    options: {                                 // Target options
-    //      removeComments: true
-    //      //removeCommentsFromCDATA: true,
-    //      //collapseWhitespace: true
-    //    },
-    //    files: {                                   // Dictionary of files** // 'destination': 'source'
-    //      //'_site/index.html': '_site/index.html',     
-    //      //'_site/about/index.html' : '_site/about/index.html',
-    //      //'_site/contact/index.html' : '_site/contact/index.html'
-    //      '_includes/head.html': '_includes/head.html'
-    //    }
-    //  }//,
-    //  //dev: {                                       // Another target
-    //  //  files: {
-    //  //    'dist/index.html': 'src/index.html',
-    //  //    'dist/contact.html': 'src/contact.html'
-    //  //  }
-    //  //}
-    //},
+    htmlmin: {
+      dev: {
+        cwd:  '.tmp/2inline',
+        src: ['**/*.html'],
+        dest: '.tmp/3thin',
+        expand: true,
+        options: {
+          minifyCSS: false,
+          minifyJS: false
+        }
+      },
+      dist: {
+        cwd:  '.tmp/2inline',
+        src: ['**/*.html'],
+        dest: '.tmp/3thin',
+        expand: true,
+        options: {
+          removeComments: true,
+          removeEmptyAttributes: true,
+          collapseWhitespace: true,
+          removeCommentsFromCDATA: true,
+          minifyCSS: true,
+          minifyJS: {
+            sequences: true,
+            dead_code: true,
+            drop_debugger: true,
+            conditionals: true,
+            comparisons: true,
+            booleans: true,
+            loops:true,
+            unused: false,
+            if_return: true,
+            join_vars: true,
+            cascade: true,
+            warnings: true,
+            drop_console: true,
+            keep_fargs: true
+          }
+        }
+      }
+    },
+    'gh-pages': {
+      options: {
+        // Options for all targets go here.
+      },
+      'gh-pages': {
+        options: {
+          base: '_site',
+          push: false
+        },
+        // These files will get pushed to the `gh-pages` branch (the default).
+        src: ['**']
+      }
+      //,
+      //'fundwindr': {
+      //  options: {
+      //    add:  true, //do not wipe out branch, only add to it
+      //    base: 'dest',
+      //    branch: 'master',
+      //    repo: 'https://example.com/other/repo.git'
+      //  },
+      //  // These files will get pushed to the `bar` branch.
+      //  src: ['**']
+      //}
+    },
+    
     watch: {
       configFiles: {
-        files: [ 'Gruntfile.js', '_config.yml' ],
+        files: [ 'Gruntfile.js', '_config.yml', 'package.json' ],
         options: {
           reload: true
         }
       },
       html: {
-        files: ['**/*.html', '!_site/**/*.html', '**/*.md']
+        files: ['**/*.html', '**/*.md']
       },
       less: {
         files: [
-          'assets/less/*.less', '!_site/**/css/*.css',
-          'assets/examples/driven-by-data/styles/main.scss', '!_site/assets/examples/driven-by-data/styles/*.css'
+          'assets/less/*.less',
+          'assets/examples/driven-by-data/styles/main.scss'
         ],
-        tasks: ['recess']
+        tasks: ['less']
       },
       js: {
         files: [
@@ -154,12 +242,8 @@ module.exports = function(grunt) {
     },
     clean: {
       dist: [
-        '_site/assets/css/main.min.css',
-        //'assets/css/main.uncss.css',
-        '_includes/*.html', //includes_src is source. Other is generated by grunt-inline.
-        '_site/assets/js/scripts.min.js',
-        '_site/assets/examples/driven-by-data/data/data.min.js',
-        '_site/assets/examples/driven-by-data/styles/main.min.css'
+        '_site/*',
+        '.tmp/*'
       ]
     }
   });
@@ -167,28 +251,46 @@ module.exports = function(grunt) {
 // Load tasks
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-shell');
-//  grunt.loadNpmTasks('grunt-contrib-htmlmin');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-recess');
-// grunt.loadNpmTasks('grunt-uncss');
+  grunt.loadNpmTasks('grunt-font-optimizer');
+  grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-//grunt.loadNpmTasks('grunt-imageoptim');
-//grunt.loadNpmTasks('grunt-svgmin');
+  grunt.loadNpmTasks('grunt-gh-pages');
 
 // Register tasks
   grunt.registerTask('default', [
-    'clean',
-    'recess',
-    'uglify',
-    'imagemin',
-    'inline',
-    'shell:jekyllServe'
-  ]);
-  grunt.registerTask('dev', [
+    //'shell:jekyllStop',
+    'clean',  
+    'less',                   // compile less to CSS
+    'uglify',                 // really just a concat
+    'imagemin',               // lossless compression
+    'uncss',                  // prune out unused CSS
+    'shell:fontsProtected',   // workaround for UNCSS overpruning
+    'inline',                 // place all resources inline in HTML. (images as base64)
+    'shell:jekyllBuild',      // assemble markdown, _layouts, and _includes
+    'htmlmin:dist',           // compress all HTML/CSS/JS
+    'shell:copy',             // include favicon
+    'shell:jekyllServe',       // serve in development
     'watch'
   ]);
+  
+  /** PRODUCTION DEPLOYMENT **/
+  grunt.registerTask('PROD', [
+    'gh-pages'
+  ]);
+
+
+  /** PRODUCTION ROLLBACK **/
+  grunt.registerTask('ROLLBACK', [
+      'shell: git checkout master~1',   //TODO: change this to branch~1 after first successful gh-pages push
+    'ROLLBACK'
+  ]);
+
+
 
 };
