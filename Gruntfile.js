@@ -309,8 +309,8 @@ module.exports = function(grunt) {
   
   /** PRODUCTION DEPLOYMENT **/
   grunt.registerTask('PROD', [
-    'default',
-    'shell:jekyllStop',
+    //'default',
+    //'shell:jekyllStop',
     'shell:noJek',
     'gh-pages'
   ]);
