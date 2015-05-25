@@ -63,6 +63,7 @@ module.exports = function(grunt) {
       dist: {
         options: {
           optimizationLevel: 7,
+          quiet: true,
           progressive: true
         },
         files: [{
@@ -131,6 +132,29 @@ module.exports = function(grunt) {
           dest: '.tmp/1fat/assets/'
         }
         ]
+      },
+      dev: {
+        expand: true,
+        options: {
+          verbose: true,
+          defer: true,
+          uglify: false,
+          cssmin: false,
+          exts: ['html', 'md']
+        },
+        files: [{
+          expand: true,
+          cwd:  '.',
+          src: ['_includes/*.html', './*.md'],
+          dest: '.tmp/1fat'
+        },
+        {
+          expand: true,
+          cwd:  'assets',
+          src: ['**/*.md'],
+          dest: '.tmp/1fat/assets/'
+        }
+        ]
       }
     },
     shell: {
@@ -138,7 +162,7 @@ module.exports = function(grunt) {
         command: 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/'
       },
       jekyllBuild: {
-        command: 'jekyll build --safe --config _config-dev.yml -s .tmp/1fat -d .tmp/2inline'
+        command: 'jekyll build --config _config-dev.yml -s .tmp/1fat -d .tmp/2inline'
       },
       jekyllServe: {
         command: 'jekyll serve --safe --trace --config _config-dev.yml'
@@ -243,7 +267,8 @@ module.exports = function(grunt) {
     clean: {
       dist: [
         '_site/*',
-        '.tmp/*'
+        '.tmp/*',
+          '.grunt/grunt-gh-pages/*'
       ]
     }
   });
@@ -256,7 +281,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-font-optimizer');
+  //grunt.loadNpmTasks('grunt-font-optimizer');
   grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -271,16 +296,17 @@ module.exports = function(grunt) {
     'imagemin',               // lossless compression
     'uncss',                  // prune out unused CSS
     'shell:fontsProtected',   // workaround for UNCSS overpruning
-    'inline',                 // place all resources inline in HTML. (images as base64)
+    'inline:dist',            // place all resources inline in HTML. (images as base64)
     'shell:jekyllBuild',      // assemble markdown, _layouts, and _includes
     'htmlmin:dist',           // compress all HTML/CSS/JS
     'shell:copy',             // include favicon
-    'shell:jekyllServe',       // serve in development
+    'shell:jekyllServe',      // serve in development
     'watch'
   ]);
   
   /** PRODUCTION DEPLOYMENT **/
   grunt.registerTask('PROD', [
+    'default',
     'gh-pages'
   ]);
 

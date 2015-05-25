@@ -6,7 +6,7 @@
         {% if link.external %}
         <a href="{{ link.url }}">{{ link.title }}</a>
         {% else %}
-        <a href="{{ site.url }}{{ link.url }}">{{ link.title }}</a>
+        <a href="{{ link.url }}">{{ link.title }}</a>
         {% endif %}
       </li>
       {% endfor %}
@@ -15,8 +15,8 @@
     {% if site.search %}<li class="dosearch"><i class="icon-search" ></i> Search</li>{% endif %}
 
     {% if page.permalink != '/' && site.logo != null %}
-      <a href="{{ site.url }}/" class="site-logo-sm" rel="home" title="{{ site.title }}">
-        <img src="{{ site.url }}/images/{{ site.logo }}" width="31" height="31" alt="{{ site.title }} logo" class="animated fadeInUp">
+      <a href="/" class="site-logo-sm" rel="home" title="{{ site.title }}">
+        <img src="../images/favicon-32x32.png" width="31" height="31" alt="{{ site.title }} logo" class="animated fadeInUp">
       </a>
     {% endif %}
  
@@ -28,9 +28,9 @@
 <header class="masthead">
   <div class="wrap">
     {% if site.logo != null %}
-      <a href="{{ site.url }}/" class="site-logo" rel="home" title="{{ site.title }}"><img src="{{ site.url }}/images/{{ site.logo }}" width="200" height="200" alt="{{ site.title }} logo" class="animated fadeInUp"></a>
+      <a href="//" class="site-logo" rel="home" title="{{ site.title }}"><img src="../images/site-logo.png" width="200" height="200" alt="{{ site.title }} logo" class="animated fadeInUp"></a>
     {% endif %}
-    <h1 class="site-title animated fadeIn"><a href="{{ site.url }}/">{{ site.corp.dba }}</a></h1>
+    <h1 class="site-title animated fadeIn"><a href="//">{{ site.corp.dba }}</a></h1>
     <h2 class="site-description animated fadeIn" itemprop="description">{{ site.description }}</h2>
   </div>
 </header>

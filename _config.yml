@@ -6,8 +6,8 @@ search:           false
 
 # Change url to your domain. Leave localhost server or blank when working locally.
 # You don't need to specify the protocol if you want it available on http and https. Example: //localhost:4000
-# Serving PRODUCTION
-url:              //greenfieldinnovation.com
+
+url:             //greenfieldinnovation.com # !!! use only in permalinks !!!
 # detach:  false
 # port:    4900
 #host:    0.0.0.0
@@ -74,16 +74,15 @@ links:
 #  - title: Blog
 #    url: /blog/
 
+source:      ./.tmp/3thin
+destination: ./_site
 
-# http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
-timezone:    America/Chicago
+timezone:    America/Chicago      # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 future:      true
 highlighter: pygments
 markdown:    kramdown
 encoding:    utf-8
-
-# https://github.com/mojombo/jekyll/wiki/Permalinks
-permalink:   /:categories/:title/
+permalink:   /:categories/:title/ # https://github.com/mojombo/jekyll/wiki/Permalinks
 relative_permalinks: false
 
 kramdown:

@@ -21,13 +21,13 @@ Thumbs.db
 venv
 node_modules
 bower_components
-.grunt    # temporary clone location
+.grunt          # temporary clone location
 .sass-cache
-.tmp
+.tmp/** 	# intermediate build steps
+_site/**	#contains Jekyll-generated static site files
 debug
 build
 npm-debug.log
 Gemfile.lock
 env/*
 !env/sample.sh
-# _site contains Jekyll-generated static site files
