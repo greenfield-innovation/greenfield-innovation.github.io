@@ -90,7 +90,7 @@ module.exports = function(grunt) {
           stylesheets  : ['../assets/css/source-sans-pro.css', '../assets/css/main.css'],
           timeout      : 10000,
           htmlroot     : '.',
-          verbose: true,
+          verbose      : false,
           report       : 'min'
         },
         files: {
@@ -115,8 +115,14 @@ module.exports = function(grunt) {
           tag: '',
           verbose: true,
           defer: true,
+          async: true,
           uglify: false,
           cssmin: false,
+          inlineTagAttributes: {
+            js: 'defer',
+            css: 'type="css/text"',
+            style: 'type="css/text"'
+          },
           exts: ['html', 'md']
         },
         files: [{
@@ -136,7 +142,7 @@ module.exports = function(grunt) {
       dev: {
         expand: true,
         options: {
-          verbose: true,
+          verbose: false,
           defer: true,
           uglify: false,
           cssmin: false,
@@ -164,18 +170,21 @@ module.exports = function(grunt) {
       jekyllBuild: {
         command: 'jekyll build --config _config-dev.yml -s .tmp/1fat -d .tmp/2inline'
       },
+      jekyllBuildInline: {
+        command: 'jekyll build --config _config-dev.yml'
+      },
       jekyllServe: {
-        command: 'jekyll serve --safe --trace --config _config-dev.yml'
+        command: 'jekyll serve --trace --config _config-dev.yml --skip-initial-build'
       },
       jekyllStop: {
-        command: "nohup killall jekyll"
+        command: "killall jekyll || exit 0;"
       },
       fontsProtected: {
         command: "cat assets/css/page.css assets/css/examples.css assets/fonts/fontawesome-4.3-subset-b64.css assets/css/font-awesome-subset.css  >> assets/css/main.min.css"
       },
-      noJek: {
-        command: "touch _site/.nojekyll"
-      }
+      gitCreds: {
+        command: "cp -v CNAME  _site/ ; touch _site/.nojekyll"
+        }
     },
     htmlmin: {
       dev: {
@@ -227,8 +236,7 @@ module.exports = function(grunt) {
           base: '_site',
           push: true
         },
-        // These files will get pushed to the `gh-pages` branch (the default).
-        src: ['**']
+        src: ['**'] // These files will get pushed to the `gh-pages` branch (the default).
       }
       //,
       //'fundwindr': {
@@ -284,15 +292,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  //grunt.loadNpmTasks('grunt-font-optimizer');
   grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-gh-pages');
 
 // Register tasks
-  grunt.registerTask('default', [
-    //'shell:jekyllStop',
+  grunt.registerTask('buildify', [
     'clean',  
     'less',                   // compile less to CSS
     'uglify',                 // really just a concat
@@ -303,22 +309,27 @@ module.exports = function(grunt) {
     'shell:jekyllBuild',      // assemble markdown, _layouts, and _includes
     'htmlmin:dist',           // compress all HTML/CSS/JS
     'shell:copy',             // include favicon
-    'shell:jekyllServe',      // serve in development
-    'watch'
+    'shell:jekyllBuildInline',// rebuild pages with inlined, compressed templates 
+    'shell:gitCreds'          // copy files needed for GitHub pages to serve site
   ]);
+
+  grunt.registerTask('default', [
+      'shell:jekyllStop',
+      'buildify',
+      'shell:jekyllServe',      // serve in development
+      'watch'
+    ]);
   
   /** PRODUCTION DEPLOYMENT **/
   grunt.registerTask('PROD', [
-    //'default',
-    //'shell:jekyllStop',
-    'shell:noJek',
+    'buildify',
     'gh-pages'
   ]);
 
 
   /** PRODUCTION ROLLBACK **/
   grunt.registerTask('ROLLBACK', [
-      'shell: git checkout master~1',   //TODO: change this to branch~1 after first successful gh-pages push
+    'shell: git checkout master~1',   //TODO: change this to branch~1 after first successful gh-pages push
     'ROLLBACK'
   ]);
 

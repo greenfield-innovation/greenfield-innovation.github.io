@@ -98,8 +98,9 @@ kramdown:
     coderay_tab_width: 4
     coderay_bold_every: 10
     coderay_css: class
-
-include: [".htaccess"]
+gems:
+  - jekyll-sitemap
+include: [".htaccess", "CNAME"]
 exclude: [
   "config.rb", "Rakefile", "Rakefile.rb", "tmp", "Gemfile", "Capfile", "Gemfile.lock",
   "Gruntfile.js", "package.json", "node_modules",

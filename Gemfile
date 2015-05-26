@@ -11,6 +11,7 @@ gem "github-markdown"   		#,    "~> 0.5",   :require => false
 gem "email_reply_parser"		#, "~> 0.5",   :require => false
 
 gem 'jekyll'
+gem 'jekyll-sitemap'
 gem 'kramdown'
 gem 'coderay'
 gem 'rake'

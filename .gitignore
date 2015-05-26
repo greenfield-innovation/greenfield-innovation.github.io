@@ -23,8 +23,8 @@ node_modules
 bower_components
 .grunt          # temporary clone location
 .sass-cache
-.tmp/** 	# intermediate build steps
-# _site/**	#contains Jekyll-generated static site files
+.tmp/**         # intermediate build steps
+# _site/**      #contains Jekyll-generated static site files
 debug
 build
 npm-debug.log
