@@ -165,7 +165,7 @@ module.exports = function(grunt) {
     },
     shell: {
       copy: {
-        command: 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/'
+        command: 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/;'
       },
       jekyllBuild: {
         command: 'jekyll build --config _config-dev.yml -s .tmp/1fat -d .tmp/2inline'
@@ -185,6 +185,21 @@ module.exports = function(grunt) {
       gitCreds: {
         command: "cp -v CNAME  _site/ ; touch _site/.nojekyll"
         }
+    },
+    copyto: {
+      exampleImages: {
+        files: [
+          {cwd: 'assets/examples/', src: ['**'], dest: '_site/examples/', expand: true}
+        ],
+        options: {
+          processContent: function(content, path) {
+            return content; // do something with content or return false to abort copy
+          },
+          ignore: [
+            'assets/examples/**/*.md'
+          ]
+        }
+      }
     },
     htmlmin: {
       dev: {
@@ -292,6 +307,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-copy-to');
   grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -310,6 +326,7 @@ module.exports = function(grunt) {
     'htmlmin:dist',           // compress all HTML/CSS/JS
     'shell:copy',             // include favicon
     'shell:jekyllBuildInline',// rebuild pages with inlined, compressed templates 
+    'copyto',      // include images in case of jekyll weirdness
     'shell:gitCreds'          // copy files needed for GitHub pages to serve site
   ]);
 

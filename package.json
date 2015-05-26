@@ -21,6 +21,7 @@
     "grunt-contrib-less": "^1.0.1",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-contrib-watch": "~0.5.2",
+    "grunt-copy-to": "0.0.12",
     "grunt-font-optimizer": "^0.2.8",
     "grunt-fontoptim": "^0.1.0",
     "grunt-gh-pages": "^0.10.0",
