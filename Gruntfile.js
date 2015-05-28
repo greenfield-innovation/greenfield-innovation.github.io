@@ -1,12 +1,12 @@
 'use strict';
 module.exports = function(grunt) {
+    // Build File for a GitHub Pages Organization Page
     // builds in stages, using grunt and jekyll
-    // 0 src
-    //1  .tmp/1fat      //jekyll, fat dev build
-    //2. .tmp/2inline   //inline, uncompressed
-    //3  .tmp/3thin    //compress everything
-    //4  _site         //final, blessed by jekyll 
-  
+
+    var jekyllConditionalWrapOpen = /\{\% if[^}]+\%\}/;
+    var jekyllConditionalWrapClose = /\{\%[^}]+endif \%\}/;
+    var jekyllConditionalWrapPair = [jekyllConditionalWrapOpen, jekyllConditionalWrapClose];
+
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     jshint: {
@@ -27,9 +27,10 @@ module.exports = function(grunt) {
           compress: false
         },
         files: {
-            'assets/css/main.css' : ['assets/less/main.less'],
-            'assets/css/page.css' : ['assets/less/page.less'],
-            'assets/css/examples.css': ['assets/examples/driven-by-data/styles/main.scss']
+            'assets/css/main.css' : ['src/assets/less/main.less'],
+            'assets/css/page.css' : ['src/assets/less/page.less'],
+          'assets/css/examples.css': ['src/assets/less/examples.less'],
+          'assets/css/treemap.css': ['src/assets/examples/driven-by-data/styles/main.scss']
         }
       }
     },
@@ -41,20 +42,20 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/js/scripts.min.js': [
-            'assets/js/vendor/modernizr-2.8.3.js',
-            'assets/js/vendor/jquery-1.11.3.min.js',
-            'assets/js/plugins/*.js',
-            'assets/js/_*.js'
+            'src/assets/js/vendor/modernizr-2.8.3.js',
+            'src/assets/js/vendor/jquery-1.11.3.min.js',
+            'src/assets/js/plugins/*.js',
+            'src/assets/js/_*.js'
           ],
           'assets/examples/driven-by-data/scripts/main.min.js':
               [
-                'assets/examples/driven-by-data/scripts/d3.min.js',
-                'assets/examples/driven-by-data/data/yahooResponseStatic.js',
-                'assets/examples/driven-by-data/data/SUB_INDUSTRY_MAP.js',
-                'assets/examples/driven-by-data/data/FLARE_SECTOR_MAP.js',
-                'assets/examples/driven-by-data/data/symbol2subindustry.js',
-                'assets/examples/driven-by-data/data/holdings.js',
-                'assets/examples/driven-by-data/scripts/main.js'
+                'src/assets/examples/driven-by-data/scripts/d3.min.js',
+                'src/assets/examples/driven-by-data/data/yahooResponseStatic.js',
+                'src/assets/examples/driven-by-data/data/SUB_INDUSTRY_MAP.js',
+                'src/assets/examples/driven-by-data/data/FLARE_SECTOR_MAP.js',
+                'src/assets/examples/driven-by-data/data/symbol2subindustry.js',
+                'src/assets/examples/driven-by-data/data/holdings.js',
+                'src/assets/examples/driven-by-data/scripts/main.js'
               ]
         }
       }
@@ -68,44 +69,27 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'images/',
+          cwd: 'src/images/',
           src: '{,*/}*.{png,jpg,jpeg}',
-          dest: '.tmp/1fat/images/'
-        }]
-      }
-    },
-    svgmin: {
-      dist: {
-        files: [{
-          expand: true,
-          cwd: 'images/',
-          src: '{,*/}*.svg',
-          dest: '.tmp/1fat/images/'
+          dest: 'images/'
         }]
       }
     },
     uncss: {
       dist: {
-        options : {
-          stylesheets  : ['../assets/css/source-sans-pro.css', '../assets/css/main.css'],
-          timeout      : 10000,
-          htmlroot     : '.',
-          verbose      : false,
-          report       : 'min'
-        },
-        files: {
-          'assets/css/main.min.css': [
-            '_includes/browser-upgrade.html',
-            '_includes/disqus_comments.html',
-            '_includes/footer.html',
-            '_includes/uncss-ignore.html',
-            '_includes/head.html',
-            '_includes/navigation.html',
-            '_layouts/*.html',
-            'assets/**/*.md',
-            '*.md'
-          ]
-        }
+        src:  [
+          'src/_includes/browser-upgrade.html',
+          'src/_includes/disqus_comments.html',
+          'src/_includes/footer.html',
+          'src/_includes/uncss-ignore.html',
+          'src/_includes/head.html',
+          'src/_includes/navigation.html',
+          'src/_layouts/*.html',
+          'src/assets/*.md',
+          'src/assets/**/*.md',
+          'src/*.md'
+        ],
+        dest: 'assets/css/main.UN.css'
       }
     },
     inline: {
@@ -113,115 +97,92 @@ module.exports = function(grunt) {
         expand: true,
         options: {
           tag: '',
-          verbose: true,
-          defer: true,
-          async: true,
-          uglify: false,
-          cssmin: false,
-          inlineTagAttributes: {
-            js: 'defer',
-            css: 'type="css/text"',
-            style: 'type="css/text"'
-          },
-          exts: ['html', 'md']
-        },
-        files: [{
-          expand: true,
-          cwd:  '.',
-          src: ['_includes/*.html', './*.md'],
-          dest: '.tmp/1fat'
-        },
-        {
-          expand: true,
-          cwd:  'assets',
-          src: ['**/*.md'],
-          dest: '.tmp/1fat/assets/'
-        }
-        ]
-      },
-      dev: {
-        expand: true,
-        options: {
           verbose: false,
           defer: true,
-          uglify: false,
-          cssmin: false,
+          async: true,
+          uglify: true,
+          cssmin: true,
           exts: ['html', 'md']
         },
-        files: [{
-          expand: true,
-          cwd:  '.',
-          src: ['_includes/*.html', './*.md'],
-          dest: '.tmp/1fat'
+        cwd: 'src',
+        src: ['*.md', '_includes/*.html', 'assets/examples/**/*.md'],
+        dest: './'
+      },
+      example2: {
+        expand: true,
+        options: {
+          tag: '',
+          verbose: false,
+          defer: true,
+          async: true,
+          uglify: true,
+          cssmin: true,
+          exts: ['md2']
         },
-        {
-          expand: true,
-          cwd:  'assets',
-          src: ['**/*.md'],
-          dest: '.tmp/1fat/assets/'
-        }
-        ]
+        cwd: 'src',
+        src: ['.examples.md2'],
+        dest: './'
       }
     },
+
     shell: {
-      copy: {
-        command: 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/;'
+      //copy: {
+      //  command:  'exit 0'// 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/;'
+      //},
+      copyLayouts: {
+        command: 'cp -Rv src/_layouts .;'
       },
-      jekyllBuild: {
-        command: 'jekyll build --config _config-dev.yml -s .tmp/1fat -d .tmp/2inline'
-      },
-      jekyllBuildInline: {
-        command: 'jekyll build --config _config-dev.yml'
+      //jekyllBuild: {
+      //  command: 'pwd; cd src; jekyll build --config ../_config-dev.yml -s . -d .tmp/1fat/; cd ../;'
+      //},
+      //jekyllBuildInline: {
+      //  command: 'jekyll build --config _config-dev.yml'
+      //},
+      moveExamples: {
+        command: 'mv -v ./.examples.md2 ./examples.md'
       },
       jekyllServe: {
-        command: 'jekyll serve --trace --config _config-dev.yml --skip-initial-build'
+        command: 'jekyll serve --safe --trace --no-watch --config _config-dev.yml'// --skip-initial-build'
       },
       jekyllStop: {
         command: "killall jekyll || exit 0;"
       },
       fontsProtected: {
-        command: "cat assets/css/page.css assets/css/examples.css assets/fonts/fontawesome-4.3-subset-b64.css assets/css/font-awesome-subset.css  >> assets/css/main.min.css"
-      },
-      gitCreds: {
-        command: "cp -v CNAME  _site/ ; touch _site/.nojekyll"
-        }
+        command: "cat assets/css/main.UN.css assets/css/page.css assets/css/examples.css assets/css/treemap.css src/assets/fonts/fontawesome-4.3-subset-b64.css src/assets/fonts/font-awesome-subset.css  > assets/css/main.css"
+      }
     },
     copyto: {
       exampleImages: {
         files: [
-          {cwd: 'assets/examples/', src: ['**'], dest: '_site/examples/', expand: true}
+          {
+            cwd: 'src/assets/examples/', 
+            src: ['**/*.png'], 
+            dest: '_site/examples/', 
+            expand: true
+          }
         ],
         options: {
           processContent: function(content, path) {
             return content; // do something with content or return false to abort copy
           },
           ignore: [
-            'assets/examples/**/*.md'
+            '**/*.md'
           ]
         }
       }
     },
     htmlmin: {
-      dev: {
-        cwd:  '.tmp/2inline',
-        src: ['**/*.html'],
-        dest: '.tmp/3thin',
-        expand: true,
-        options: {
-          minifyCSS: false,
-          minifyJS: false
-        }
-      },
       dist: {
-        cwd:  '.tmp/2inline',
-        src: ['**/*.html'],
-        dest: '.tmp/3thin',
+        cwd:  '.',
+        src: ['_includes/*.html', '_layouts/*.html'], //no dest: change-in-place
         expand: true,
         options: {
           removeComments: true,
-          removeEmptyAttributes: true,
+          removeEmptyAttributes: false,
           collapseWhitespace: true,
           removeCommentsFromCDATA: true,
+          removeIgnored: false,
+          customAttrSurround: [jekyllConditionalWrapPair],
           minifyCSS: true,
           minifyJS: {
             sequences: true,
@@ -241,29 +202,6 @@ module.exports = function(grunt) {
           }
         }
       }
-    },
-    'gh-pages': {
-      options: {
-        // Options for all targets go here.
-      },
-      'gh-pages': {
-        options: {
-          base: '_site',
-          push: true
-        },
-        src: ['**'] // These files will get pushed to the `gh-pages` branch (the default).
-      }
-      //,
-      //'fundwindr': {
-      //  options: {
-      //    add:  true, //do not wipe out branch, only add to it
-      //    base: 'dest',
-      //    branch: 'master',
-      //    repo: 'https://example.com/other/repo.git'
-      //  },
-      //  // These files will get pushed to the `bar` branch.
-      //  src: ['**']
-      //}
     },
     
     watch: {
@@ -292,9 +230,13 @@ module.exports = function(grunt) {
     },
     clean: {
       dist: [
-        '_site/*',
-        '.tmp/*',
-          '.grunt/grunt-gh-pages/*'
+        '*.md',
+        '_site/**',
+        '_includes/*',
+        '_layouts/*',
+        'assets/**',
+        'images/**',
+        'examples/**'
       ]
     }
   });
@@ -311,23 +253,21 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-inline');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-gh-pages');
 
 // Register tasks
   grunt.registerTask('buildify', [
     'clean',  
-    'less',                   // compile less to CSS
-    'uglify',                 // really just a concat
-    'imagemin',               // lossless compression
-    'uncss',                  // prune out unused CSS
-    'shell:fontsProtected',   // workaround for UNCSS overpruning
-    'inline:dist',            // place all resources inline in HTML. (images as base64)
-    'shell:jekyllBuild',      // assemble markdown, _layouts, and _includes
-    'htmlmin:dist',           // compress all HTML/CSS/JS
-    'shell:copy',             // include favicon
-    'shell:jekyllBuildInline',// rebuild pages with inlined, compressed templates 
-    'copyto',      // include images in case of jekyll weirdness
-    'shell:gitCreds'          // copy files needed for GitHub pages to serve site
+    'less',                     // compile less to CSS
+    'uglify',                   // really just a concat
+    'imagemin',                 // lossless compression
+    'uncss',                    // prune out unused CSS
+    'shell:fontsProtected',     // workaround for UNCSS overpruning
+    'inline:dist',              // place all resources inline in HTML. (images as base64)
+    'inline:example2',          // place all resources inline in HTML. (images as base64) (.md2 extension to hide from jekyll)
+    'shell:moveExamples',
+    'shell:copyLayouts',        // get layouts ready for htmlmin
+    'htmlmin:dist',             // compress all HTML/CSS/JS
+    'copyto'                    // include images in case of jekyll weirdness
   ]);
 
   grunt.registerTask('default', [
@@ -339,8 +279,7 @@ module.exports = function(grunt) {
   
   /** PRODUCTION DEPLOYMENT **/
   grunt.registerTask('PROD', [
-    'buildify',
-    'gh-pages'
+    'buildify'
   ]);
 
 

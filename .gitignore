@@ -23,7 +23,7 @@ node_modules
 bower_components
 .grunt          # temporary clone location
 .sass-cache
-.tmp         # intermediate build steps
+.tmp            # intermediate build steps
 .tmp/**         # intermediate build steps
 # _site/**      #contains Jekyll-generated static site files
 debug
@@ -33,3 +33,4 @@ Gemfile.lock
 env/*
 !env/sample.sh
 sitemap.xml
+

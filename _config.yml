@@ -21,7 +21,7 @@ corp:
 # Owner/author information
 owner:
   name:           Monte Hayward
-  #TODO: avatar:         bio-photo.jpg
+  avatar:         bio-photo.png
   email:          monte@montehayward.com
   # Social networking links used in footer. Update and remove as you like.
   angelco:  gig-greenfield-innovation-group
@@ -74,9 +74,6 @@ links:
 #  - title: Blog
 #    url: /blog/
 
-source:      ./.tmp/3thin
-destination: ./_site
-
 timezone:    America/Chicago      # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 future:      true
 highlighter: pygments
@@ -98,8 +95,9 @@ kramdown:
     coderay_tab_width: 4
     coderay_bold_every: 10
     coderay_css: class
-
-include: [".htaccess"]
+gems:
+  - jekyll-sitemap
+include: [".htaccess", "CNAME"]
 exclude: [
   "config.rb", "Rakefile", "Rakefile.rb", "tmp", "Gemfile", "Capfile", "Gemfile.lock",
   "Gruntfile.js", "package.json", "node_modules",
