@@ -84,7 +84,7 @@ relative_permalinks: false
 
 source: .
 dest:   _site/
-ignore: src
+ignore: .src
 
 kramdown:
   auto_ids: true

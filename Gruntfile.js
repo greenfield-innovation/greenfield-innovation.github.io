@@ -3,9 +3,9 @@ module.exports = function(grunt) {
     // Build File for a GitHub Pages Organization Page
     // builds in stages, using grunt and jekyll
 
-    var jekyllConditionalWrapOpen = /\{\% if[^}]+\%\}/;
-    var jekyllConditionalWrapClose = /\{\%[^}]+endif \%\}/;
-    var jekyllConditionalWrapPair = [jekyllConditionalWrapOpen, jekyllConditionalWrapClose];
+  var jekyllConditionalWrapOpen = /\{\% if[^}]+\%\}/;
+  var jekyllConditionalWrapClose = /\{\%[^}]+endif \%\}/;
+  var jekyllConditionalWrapPair = [jekyllConditionalWrapOpen, jekyllConditionalWrapClose];
 
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
@@ -27,10 +27,10 @@ module.exports = function(grunt) {
           compress: false
         },
         files: {
-            'assets/css/main.css' : ['src/assets/less/main.less'],
-            'assets/css/page.css' : ['src/assets/less/page.less'],
-          'assets/css/examples.css': ['src/assets/less/examples.less'],
-          'assets/css/treemap.css': ['src/assets/examples/driven-by-data/styles/main.scss']
+            'assets/css/main.css' : ['.src/assets/less/main.less'],
+            'assets/css/page.css' : ['.src/assets/less/page.less'],
+          'assets/css/examples.css': ['.src/assets/less/examples.less'],
+          'assets/css/treemap.css': ['.src/assets/examples/driven-by-data/styles/main.scss']
         }
       }
     },
@@ -42,20 +42,20 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/js/scripts.min.js': [
-            'src/assets/js/vendor/modernizr-2.8.3.js',
-            'src/assets/js/vendor/jquery-1.11.3.min.js',
-            'src/assets/js/plugins/*.js',
-            'src/assets/js/_*.js'
+            '.src/assets/js/vendor/modernizr-2.8.3.js',
+            '.src/assets/js/vendor/jquery-1.11.3.min.js',
+            '.src/assets/js/plugins/*.js',
+            '.src/assets/js/_*.js'
           ],
           'assets/examples/driven-by-data/scripts/main.min.js':
               [
-                'src/assets/examples/driven-by-data/scripts/d3.min.js',
-                'src/assets/examples/driven-by-data/data/yahooResponseStatic.js',
-                'src/assets/examples/driven-by-data/data/SUB_INDUSTRY_MAP.js',
-                'src/assets/examples/driven-by-data/data/FLARE_SECTOR_MAP.js',
-                'src/assets/examples/driven-by-data/data/symbol2subindustry.js',
-                'src/assets/examples/driven-by-data/data/holdings.js',
-                'src/assets/examples/driven-by-data/scripts/main.js'
+                '.src/assets/examples/driven-by-data/scripts/d3.min.js',
+                '.src/assets/examples/driven-by-data/data/yahooResponseStatic.js',
+                '.src/assets/examples/driven-by-data/data/SUB_INDUSTRY_MAP.js',
+                '.src/assets/examples/driven-by-data/data/FLARE_SECTOR_MAP.js',
+                '.src/assets/examples/driven-by-data/data/symbol2subindustry.js',
+                '.src/assets/examples/driven-by-data/data/holdings.js',
+                '.src/assets/examples/driven-by-data/scripts/main.js'
               ]
         }
       }
@@ -69,7 +69,7 @@ module.exports = function(grunt) {
         },
         files: [{
           expand: true,
-          cwd: 'src/images/',
+          cwd: '.src/images/',
           src: '{,*/}*.{png,jpg,jpeg}',
           dest: 'images/'
         }]
@@ -78,21 +78,51 @@ module.exports = function(grunt) {
     uncss: {
       dist: {
         src:  [
-          'src/_includes/browser-upgrade.html',
-          'src/_includes/disqus_comments.html',
-          'src/_includes/footer.html',
-          'src/_includes/uncss-ignore.html',
-          'src/_includes/head.html',
-          'src/_includes/navigation.html',
-          'src/_layouts/*.html',
-          'src/assets/*.md',
-          'src/assets/**/*.md',
-          'src/*.md'
+          '.src/_includes/browser-upgrade.html',
+          '.src/_includes/disqus_comments.html',
+          '.src/_includes/footer.html',
+          '.src/_includes/uncss-ignore.html',
+          '.src/_includes/head.html',
+          '.src/_includes/navigation.html',
+          '.src/_layouts/*.html',
+          '.src/assets/*.md',
+          '.src/assets/**/*.md',
+          '.src/*.md'
         ],
         dest: 'assets/css/main.UN.css'
       }
     },
     inline: {
+      example: {
+        expand: true,
+        options: {
+          tag: '__inline=true',
+          verbose: false,
+          defer: true,
+          async: true,
+          uglify: true,
+          cssmin: true,
+          exts: ['md']
+        },
+        cwd: '.src',
+        src: ['assets/examples/**/*.md'],
+        dest: './'
+      },
+      example2: {
+        expand: true,
+        options: {
+          tag: '__inline=true',
+          verbose: false,
+          defer: true,
+          async: true,
+          uglify: true,
+          cssmin: true,
+          exts: ['md2']
+        },
+        cwd: '.src',
+        src: ['.examples.md2'],
+        dest: './'
+      },
       dist: {
         expand: true,
         options: {
@@ -104,60 +134,42 @@ module.exports = function(grunt) {
           cssmin: true,
           exts: ['html', 'md']
         },
-        cwd: 'src',
+        cwd: '.src',
         src: ['*.md', '_includes/*.html', 'assets/examples/**/*.md'],
-        dest: './'
-      },
-      example2: {
-        expand: true,
-        options: {
-          tag: '',
-          verbose: false,
-          defer: true,
-          async: true,
-          uglify: true,
-          cssmin: true,
-          exts: ['md2']
-        },
-        cwd: 'src',
-        src: ['.examples.md2'],
         dest: './'
       }
     },
 
     shell: {
-      //copy: {
-      //  command:  'exit 0'// 'cp -Rv favicon* .tmp/3thin/; mkdir .tmp/3thin/assets; cp -Rv assets/fonts .tmp/3thin/assets/;'
-      //},
       copyLayouts: {
-        command: 'cp -Rv src/_layouts .;'
+        command: 'cp -Rv .src/_layouts .;'
       },
-      //jekyllBuild: {
-      //  command: 'pwd; cd src; jekyll build --config ../_config-dev.yml -s . -d .tmp/1fat/; cd ../;'
-      //},
-      //jekyllBuildInline: {
-      //  command: 'jekyll build --config _config-dev.yml'
-      //},
       moveExamples: {
         command: 'mv -v ./.examples.md2 ./examples.md'
       },
       jekyllServe: {
-        command: 'jekyll serve --safe --trace --no-watch --config _config-dev.yml'// --skip-initial-build'
+        command: 'jekyll serve --safe --trace --no-watch --config _config-dev.yml'
       },
       jekyllStop: {
         command: "killall jekyll || exit 0;"
       },
       fontsProtected: {
-        command: "cat assets/css/main.UN.css assets/css/page.css assets/css/examples.css assets/css/treemap.css src/assets/fonts/fontawesome-4.3-subset-b64.css src/assets/fonts/font-awesome-subset.css  > assets/css/main.css"
+        command: "cat assets/css/main.UN.css assets/css/page.css assets/css/examples.css assets/css/treemap.css .src/assets/fonts/fontawesome-4.3-subset-b64.css .src/assets/fonts/font-awesome-subset.css  > assets/css/main.css"
+      },
+      copyExamples: {
+        command: 'cp -vR .src/assets/examples/** assets/examples/'
+      },
+      setPermissions: {
+        command: 'chmod -vR +x assets images'
       }
     },
     copyto: {
-      exampleImages: {
+      exampleImages: { 
         files: [
           {
-            cwd: 'src/assets/examples/', 
+            cwd: '.src/assets/examples/', 
             src: ['**/*.png'], 
-            dest: '_site/examples/', 
+            dest: 'assets/examples/',
             expand: true
           }
         ],
@@ -234,8 +246,8 @@ module.exports = function(grunt) {
         '_site/**',
         '_includes/*',
         '_layouts/*',
-        'assets/**',
-        'images/**',
+        'assets/examples/*',
+        'images/*',
         'examples/**'
       ]
     }
@@ -257,6 +269,7 @@ module.exports = function(grunt) {
 // Register tasks
   grunt.registerTask('buildify', [
     'clean',  
+    'shell:copyExamples',
     'less',                     // compile less to CSS
     'uglify',                   // really just a concat
     'imagemin',                 // lossless compression
@@ -267,7 +280,8 @@ module.exports = function(grunt) {
     'shell:moveExamples',
     'shell:copyLayouts',        // get layouts ready for htmlmin
     'htmlmin:dist',             // compress all HTML/CSS/JS
-    'copyto'                    // include images in case of jekyll weirdness
+    'copyto'                    // include images for below-the-fold loading
+    //'shell:setPermissions'
   ]);
 
   grunt.registerTask('default', [
@@ -282,13 +296,10 @@ module.exports = function(grunt) {
     'buildify'
   ]);
 
-
   /** PRODUCTION ROLLBACK **/
   grunt.registerTask('ROLLBACK', [
     'shell: git checkout master~1',   //TODO: change this to branch~1 after first successful gh-pages push
     'ROLLBACK'
   ]);
-
-
 
 };
