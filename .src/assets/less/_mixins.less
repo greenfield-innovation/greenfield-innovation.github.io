@@ -3,20 +3,10 @@
 
 // Clearfix
 // --------------------
-// For clearing floats like a boss h5bp.com/q
-.clearfix {
-  *zoom: 1;
-  &:before,
-  &:after {
-    display: table;
-    content: "";
-    // Fixes Opera/contenteditable bug:
-    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
-    line-height: 0;
-  }
-  &:after {
-    clear: both;
-  }
+.clearfix() {
+  clear: both;
+  float: none;
+  zoom: 1;
 }
 
 // Webkit-style focus
@@ -298,9 +288,9 @@ overflow: visible; }
 
 @forcepadding:  ~"only screen and (max-width: 659px)";
 
-@small:       ~"only screen and (min-width: 30em)";
-@medium:      ~"only screen and (min-width: 48em)";
-@seven-h:      ~"only screen and (min-width:755px)";
+@small:       ~"only screen and (min-width: 30em)"; //480
+@medium:      ~"only screen and (min-width: 48em)"; //647px
+@seven-h:     ~"only screen and (min-width:755px)";
 @large:       ~"only screen and (min-width: 62.5em)";
 @highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
               ~"only screen and (-o-min-device-pixel-ratio: 3/2)",

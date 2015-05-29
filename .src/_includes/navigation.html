@@ -1,27 +1,28 @@
-<div class="navigation-wrapper">
-  <nav role="navigation" id="site-nav" class="animated drop">
-    <ul>
-      {% for link in site.links %}
-      <li>
-        {% if link.external %}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-        {% else %}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-        {% endif %}
-      </li>
-      {% endfor %}
-    </ul>
-  </nav>
+
+<nav class="nav-collapse closed nav-collapse-0 closed" aria-hidden="true">
+  <ul>
+    {% for link in site.links %}
+      {% if link.title != "" %}
+        <li>
+            <a href="{{ link.url }}">{{ link.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
     {% if site.search %}<li class="dosearch"><i class="icon-search" ></i> Search</li>{% endif %}
+  </ul>
+</nav>
 
-    {% if page.permalink != '/' && site.logo != null %}
-      <a href="/" class="site-logo-sm" rel="home" title="{{ site.title }}">
-        <img src="../images/favicon-32x32.png" width="31" height="31" alt="{{ site.title }} logo" class="animated fadeInUp">
-      </a>
-    {% endif %}
- 
-</div>
 
+
+{% if page.permalink != '/' && site.logo != null %}
+<a href="/" class="site-logo-sm" rel="home" title="{{ site.title }}">
+  <img src="../images/favicon-96x96.png" alt="{{ site.title }} logo" class="animated fadeInUp">
+  <h2 class="site-description animated fadeIn" itemprop="description">greenfield innovation group</h2>
+</a>
+{% endif %}
+
+
+  
 {% include browser-upgrade.html %}
 
 {% if page.permalink == '/' %}
@@ -40,7 +41,7 @@
   {% if site.search %}
     <div class="search-wrapper">
       <div class="search-form">
-        <input type="text" class="search-field" p laceholder="Search...">
+        <input type="text" class="search-field" placeholder="Search...">
         <i class="icon-remove-sign icon-2x"></i>
         <ul class="search-results post-list"></ul>
       </div>

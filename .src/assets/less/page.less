@@ -5,7 +5,7 @@ body {
   padding: 0;
   width: 100%;
   background-color: @white;
-  border-top: 5px solid @accent-color;
+  border-top: 1px solid @accent-color;
   @media @medium {
     .font-rem(20);
   }
@@ -23,124 +23,35 @@ p {
 }
 
 
-// Top Navigation
+// Top Navigation in responsive-nav.css
+
+//  Branding
 // --------------------------------------------------
-.navigation-wrapper {
-  text-align: left;
-  .clearfix();
-  ul {
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 0 50px;
-    padding: 0px .75em 10px 10px;
-    background-color: @nav-background-color;
-    border-top: 0px solid @nav-background-color;
-    .rounded(0 0 35px 0);
-    .clearfix();
-  }
-  li {
-    display: block;
-    float: left;
-    list-style: none;
-    text-align: left;
-    .font-rem(14);
-    text-transform: uppercase;
-    color: @white;
-    a:hover {
-      .box-shadow(@shadow: inset 0 0 1px @white);
-    }
-  }
-  a {
-    display: block;
-    padding: 6px 10px;
-    color: @white;
-    .rounded(4px);
-    &:hover {
-      background-color: lighten(@black, 10);
-    }
-    &.site-logo-sm {
-        float: right;
-      @media @medium {
-        left: 400px;  // just right of menu
-        position: absolute;
-        float: none;
-      }
-      img {
-        width: 55px;
-        height: 55px;
-        clear:none;
-        -webkit-animation-duration: 1s;
-        -moz-animation-duration: 1s;
-        -o-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-delay: .05s;
-        -moz-animation-delay: .05s;
-        -o-animation-delay: .05s;
-        animation-delay: .05s;
-        border: medium none;
-      }
-      &:hover {
-        background-color: transparent;
-      }
-    }
-  }
-}
-.navigation-wrapper #site-nav.opened ul {
-  .clearfix();
-  border-top: 32px solid @nav-background-color;
-  float: left;
-}
-.navigation-wrapper #site-nav.closed ul {
-  .clearfix();
-  padding-top: .5em;
-  border-top: 0 solid @nav-background-color;
-  float: left;
-}
-// Responsive nav toggle stuff
-#site-nav {
-  z-index: 9000;
-  display: none;
-  text-align: left;	//prevent covering logo
-  @media @medium {
+
+a.site-logo-sm {
+  display:block;
+  margin: 1.2rem 1rem;
+  img {
+    width: 64px;
+    height: 64px;
+    clear:none;
     -webkit-animation-duration: 1s;
     -moz-animation-duration: 1s;
     -o-animation-duration: 1s;
     animation-duration: 1s;
+    -webkit-animation-delay: .05s;
+    -moz-animation-delay: .05s;
+    -o-animation-delay: .05s;
+    animation-delay: .05s;
+    border: medium none;
+    
+    
   }
-  &.closed {
-    @media @medium {
-      display: block;
-    }
-  }
-  &.opened {
-    display: block;
-    max-height: 100%;
-    li {
-      float: none;
-      @media @medium {
-        float: left;
-      }
-    }
+  &:hover {
+    background-color: transparent;
   }
 }
-.no-js #site-nav {
-  display: block;
-}
-#nav-toggle {
-  z-index: 9999;
-  color:#aaa;
-  text-align: left;
-  display: block;
-  position: absolute; // allow menu to overlap and provide background color
-  vertical-align: top;
-  margin: 0;
-  padding: 4px 20px;
-  background-color: transparent;
-  .rounded(0);
-  @media @medium {
-    display: none;
-  }
-}
+
 
 // Masthead
 // --------------------------------------------------
@@ -152,13 +63,13 @@ p {
   }
   .wrap {
     text-align: center;
-    max-width: 27.5em;
-    padding-right: 20px;
-    padding-left: 20px;
+    max-width: 27.5rem;
+    padding-right: 1.8rem;
+    padding-left: 1.8rem;
     @media @medium {
-      max-width: 45.5em;
-      padding-right: 60px;
-      padding-left: 60px;
+      max-width: 45.5rem;
+      padding-right: 7rem;
+      padding-left: 7rem;
     }
     @media @large {
       max-width: 60em;
@@ -169,6 +80,7 @@ p {
   img {
     width: 100px;
     height: 100px;
+    margin-top: 1.3rem;
     -webkit-animation-duration: 1s;
     -moz-animation-duration: 1s;
     -o-animation-duration: 1s;
@@ -202,8 +114,12 @@ p {
   animation-delay: .75s;
   a { color: @black; }
 }
+
 .site-description {
   margin-top: 0;
+  display: inline;
+  vertical-align: top;
+  margin-left: 1rem;
   font-family: @alt-font;
   .font-rem(16);
   font-weight: 400;
@@ -226,8 +142,9 @@ p {
 #main {
   .clearfix();
   @media @forcepadding {
-    padding: 0 1.5%;  //text not to edge of mobile screen
+    padding: 0 1.8rem;  //text not to edge of mobile screen
   }
+  line-height: 1.6rem;
 }
 .entry,
 .hentry {

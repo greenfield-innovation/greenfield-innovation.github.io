@@ -1,12 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
 <!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../../assets/css/main.css">
   <title>{% if page.title %}{{ page.title }} &#58; {% endif %}{{ site.title }}</title>
+  <style>
+    @media screen and (max-width: 600px) {
+      .nav-collapse {
+        clip: rect(0 0 0 0);
+        max-height: 0;
+        position: absolute;
+        display: block;
+        overflow: hidden;
+        zoom: 1;
+     }
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="../../assets/css/main.css">
   <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
   {% if page.tags %}<meta name="keywords" content="{{ page.tags | join: ', ' }}">{% endif %}
   
