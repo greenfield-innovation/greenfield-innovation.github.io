@@ -282,12 +282,12 @@ module.exports = function(grunt) {
     'uncss',                    // prune out unused CSS
     'shell:fontsProtected',     // workaround for UNCSS overpruning
     'inline:dist',              // place all resources inline in HTML. (images as base64)
-    'inline:example2',          // place all resources inline in HTML. (images as base64) (.md2 extension to hide from jekyll)
+    'inline:example',           // place selective resources inline in Markdown. (images as base64)
+    'inline:example2',          // place resources inline (.md2 extension to hide from jekyll)
     'shell:moveExamples',
     'shell:copyLayouts',        // get layouts ready for htmlmin
     'htmlmin:dist',             // compress all HTML/CSS/JS
     'copyto'                    // include images for below-the-fold loading
-    //'shell:setPermissions'
   ] );
 
   grunt.registerTask( 'default', [

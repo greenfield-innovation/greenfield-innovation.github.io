@@ -42,7 +42,7 @@ modified: 2015-05-22
   zoom: 1;
   opacity: .6;
   margin: 0;
-  padding: 2.2rem 1rem 0 0;
+  padding: 1.2rem 1rem 0 0;
   background-color: #222222;
   color: #ffffff;
   font-size: 1.1rem;
@@ -88,7 +88,7 @@ modified: 2015-05-22
 .banner .dots {
   position: absolute;
   left: 0;
-  bottom: 1.5rem;
+  bottom: .5rem;
   margin: 0;
   padding: 0;
 }
