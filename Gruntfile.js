@@ -135,7 +135,7 @@ module.exports = function(grunt) {
           exts:    ['html', 'md']
         },
         cwd:     '.src',
-        src:     ['*.md', '_includes/*.html', 'assets/examples/**/*.md'],
+        src:     ['*.md', '_includes/*.html'],
         dest:    './'
       }
     },
@@ -293,8 +293,7 @@ module.exports = function(grunt) {
   grunt.registerTask( 'default', [
     'shell:jekyllStop',
     'buildify',
-    'shell:jekyllServe',      // serve in development
-    'watch'
+    'shell:jekyllServe'      // serve in development
   ] );
 
   /** PRODUCTION DEPLOYMENT **/
