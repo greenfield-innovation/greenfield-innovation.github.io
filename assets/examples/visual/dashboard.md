@@ -8,10 +8,10 @@ modified: 2015-06-11
 
 <style>
   img {
+    border: 1px solid #dddddd;
     -webkit-box-shadow: 0px 3px 2px -2px rgba(0, 0, 0, 0);
     -moz-box-shadow: 0px 3px -2px 0 rgba(0, 0, 0, 0);
     box-shadow: 0px 2px 3px -2px rgba(0, 0, 0, 0);
-    border: 1px solid #ddddd;
   }
 </style>
 
