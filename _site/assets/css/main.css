@@ -1411,7 +1411,7 @@ body {
   overflow: visible;
 }
 .portfolio-list {
-  text-transform: lowercase;
+  font-size: 1.2rem;
 }
 .portfolio-list ul {
   overflow: hidden;
@@ -1424,9 +1424,20 @@ body {
   padding: 1rem 1rem 2rem 1rem;
   text-align: center;
 }
+.portfolio-list li.width-double {
+  width: 100%;
+  clear: both;
+}
+.portfolio-list li.width-double img {
+  margin: .55rem 0 .75rem 0;
+  width: 93.7%;
+}
 @media only screen and (min-width: 48em) {
   .portfolio-list li {
     width: 46%;
+  }
+  .portfolio-list li.width-double img {
+    max-width: 2120px;
   }
 }
 .portfolio-list li .tags {
