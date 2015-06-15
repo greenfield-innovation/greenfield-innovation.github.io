@@ -181,7 +181,7 @@ module.exports = function(grunt) {
           {
             cwd: '',
             src: '.src/robots.txt',
-            dest: '_robots.txt'
+            dest: 'robots.txt'
           }
         ],
         options: {
