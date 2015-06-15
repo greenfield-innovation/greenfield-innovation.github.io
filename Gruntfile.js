@@ -157,7 +157,7 @@ module.exports = function(grunt) {
         command: "cat .src/assets/js/plugins/responsive-nav.css assets/css/main.UN.css assets/css/page.css assets/css/examples.css assets/css/treemap.css .src/assets/fonts/fontawesome-4.3-subset-b64.css .src/assets/fonts/font-awesome-subset.css  > assets/css/main.css"
       },
       copyExamples:   {
-        command: 'mkdir assets assets/examples assets/examples/css assets/js ;cp -vR .src/assets/examples/** assets/examples/'
+        command: 'mkdir assets assets/docs assets/examples assets/examples/css assets/js ;cp -vR .src/assets/examples/** assets/examples/'
       },
       setPermissions: {
         command: 'chmod -vR +x assets images'
@@ -166,11 +166,20 @@ module.exports = function(grunt) {
     copyto:  {
       exampleImages: {
         files:   [
+          //{
+          //  cwd:    '.src/assets/examples/',
+          //  src:    ['**/*.png'],
+          //  dest:   'assets/examples/',
+          //  expand: true
+          //},
+          //{
+          //  src: ['.src/assets/docs/*.*'],
+          //  dest: 'assets/docs/'
+          //},
           {
-            cwd:    '.src/assets/examples/',
-            src:    ['**/*.png'],
-            dest:   'assets/examples/',
-            expand: true
+            cwd: '',
+            src: '.src/robots.txt',
+            dest: '_site/robots.txt'
           }
         ],
         options: {

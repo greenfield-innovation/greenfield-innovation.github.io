@@ -1,0 +1,4 @@
+User-Agent: *
+Disallow: /assets/docs/
+Disallow: /examples/
+
