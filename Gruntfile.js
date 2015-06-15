@@ -175,13 +175,13 @@ module.exports = function(grunt) {
           {
             cwd: '.src/assets/docs/',
             src: ['**/*.*'],
-            dest: '_site/assets/docs/',
+            dest: 'assets/docs/',
             expand: true
           },
           {
             cwd: '',
             src: '.src/robots.txt',
-            dest: '_site/robots.txt'
+            dest: '_robots.txt'
           }
         ],
         options: {
