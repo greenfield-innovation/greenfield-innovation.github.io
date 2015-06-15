@@ -166,16 +166,16 @@ module.exports = function(grunt) {
     copyto:  {
       exampleImages: {
         files:   [
-          //{
-          //  cwd:    '.src/assets/examples/',
-          //  src:    ['**/*.png'],
-          //  dest:   'assets/examples/',
-          //  expand: true
-          //},
-          //{
-          //  src: ['.src/assets/docs/*.*'],
-          //  dest: 'assets/docs/'
-          //},
+          {
+            cwd:    '.src/assets/examples/',
+            src:    ['**/*.png'],
+            dest:   'assets/examples/',
+            expand: true
+          },
+          {
+            src: ['.src/assets/docs/*.*'],
+            dest: 'assets/docs/'
+          },
           {
             cwd: '',
             src: '.src/robots.txt',
