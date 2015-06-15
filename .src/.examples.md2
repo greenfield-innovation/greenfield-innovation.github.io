@@ -2,6 +2,7 @@
 layout: examples
 permalink: /examples/
 title: Examples
+sitemap: false
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-27
 ---

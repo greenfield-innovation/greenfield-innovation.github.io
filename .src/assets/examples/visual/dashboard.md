@@ -2,6 +2,7 @@
 layout: examples
 permalink: /examples/visual/
 title: Analytics Dashboard Visuals
+sitemap: false
 tags: [d3js, protobuf, UX, dev-on-demand, contract, freelence, senior user experience engineer]
 modified: 2015-06-11
 ---

@@ -1,6 +1,7 @@
 ---
 layout: examples
 permalink: /examples/lean/
+sitemap: false
 title: Lean and Agile Development Cycle
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-15
@@ -11,7 +12,7 @@ modified: 2015-05-15
 ## Challenge
 
 * Missed external commitments
-* Internal stakeholders unsatisfied 
+* Internal stakeholders unsatisfied
 * 5-week cycles often interrupted
 * Newly tasked with managing the development process
 * Annual Roadmap forecast a dev team 66% larger
@@ -29,7 +30,7 @@ modified: 2015-05-15
 1. Lean Routine - Agile Feedback Loop
   * Everyday process
   * Frequent releases of value-enriching features
-  * One-WeekCycles 
+  * One-WeekCycles
 2. Deal-Driven Sprint
   * Deals with external feature commitments
   * Significant revenue available in narrow window

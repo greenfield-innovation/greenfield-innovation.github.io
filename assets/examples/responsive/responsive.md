@@ -2,6 +2,7 @@
 layout: examples
 permalink: /examples/responsive/
 title: Responsive Web App
+sitemap: false
 tags: [mobile-first, responsive, bootstrap 3, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-22
 ---
@@ -137,7 +138,7 @@ modified: 2015-05-22
     clear: both;
     float: none;
     padding: .75rem 0 0 12px;
-    text-align: center;  
+    text-align: center;
   }
 }
 
@@ -157,7 +158,7 @@ modified: 2015-05-22
 
 
 ## Challenge
-* Auto insurance consumers compare brands and purchase 
+* Auto insurance consumers compare brands and purchase
 * Single page application in beta
 * Costly maintenance, with ~ 2200 lines of custom CSS (50%)
 * Must become mobile-responsive
@@ -184,56 +185,56 @@ modified: 2015-05-22
   <div class="banner" style="max-height: 675px; overflow: hidden;">
     <ul>
       <li><figure>
-        <img  
+        <img
           alt="Mobile emulation during development"
-          title="Samsung Galaxy S4" 
+          title="Samsung Galaxy S4"
           src="/assets/examples/responsive/360x640-samsung-galaxy-s4/04-rates-1040.png?__inline=true" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>360x640 Samsung Galaxy S4</figcaption></figure>
       </li>
       <li><figure>
-        <img  
+        <img
           alt="Mobile emulation during development"
-          title="iPhone 6 vertical" 
+          title="iPhone 6 vertical"
           src="/assets/examples/responsive/375x667-iphone-6/04-rates-1040.png" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>375x667 Apple iPhone 6</figcaption></figure>
       </li>
-      
+
       <li><figure>
-        <img  
-          alt="Mobile emulation during development" 
-          title="Google Nexus 7 horizontal" 
+        <img
+          alt="Mobile emulation during development"
+          title="Google Nexus 7 horizontal"
           src="/assets/examples/responsive/960x600-google-nexus-7/04-rates-1040.png" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>960x600 Google Nexus 7</figcaption></figure>
       </li>
-    
+
       <li><figure>
-        <img  
+        <img
           alt="Mobile emulation during development"
-          title="Blackberry Playbook" 
+          title="Blackberry Playbook"
           src="/assets/examples/responsive/1024x600-blackberry-playbook/04-rates-1040.png" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>1024x600 Blackberry Playbook</figcaption></figure>
       </li>
-    
+
       <li><figure>
-        <img  
+        <img
           alt="Mobile emulation during development"
-          title="Apple iPad Mini" 
+          title="Apple iPad Mini"
           src="/assets/examples/responsive/1024x768-ipad-mini/04-rates-1040.png" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>1024x768 Apple iPad Mini</figcaption></figure>
       </li>
-      
+
       <li><figure>
-        <img  
-          alt="Mobile emulation during development" 
-          title="Google Nexus 10 horizontal" 
+        <img
+          alt="Mobile emulation during development"
+          title="Google Nexus 10 horizontal"
           src="/assets/examples/responsive/1280x800-google-nexus-10/04_rates-1040.png" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>1280x800 Google Nexus 10</figcaption></figure>
       </li>
-      
+
       <li><figure>
-        <img  
-          alt="Device emulation during development" 
-          title="Apple Thunderbolt 27in Display" 
+        <img
+          alt="Device emulation during development"
+          title="Apple Thunderbolt 27in Display"
           src="/assets/examples/responsive/2560x1440-apple-thunderbolt/rates-2560x1440-apple-thunderbolt-1040.png" />
         <figcaption><span class="deviceEmulation">Device emulation: </span>2560x1440 Apple Thunderbolt Display</figcaption></figure>
       </li>
@@ -267,9 +268,9 @@ modified: 2015-05-22
     slidey = unslider.data('unslider');
     slidey.next();
     slidey.stop();
-  }); 
-  
+  });
+
   $('.banner.hasdots li.dot').click(function() {
     unslider.data.stop();
-  });  
+  });
 </script>

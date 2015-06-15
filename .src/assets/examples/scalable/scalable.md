@@ -1,6 +1,7 @@
 ---
 layout: examples
 permalink: /examples/scalable/
+sitemap: false
 title: Scalable Payment Systems
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-18
@@ -25,7 +26,7 @@ modified: 2015-05-18
 * Led QA activities and assisted professional services team
 
 ## Results
-* New Business: <a href="http://www.startribune.com/givemn-retools-to-the-max-after-2013-website-crash/254742841/" target="_blank">GiveMN avoids another crash by switching to this scalable platform</a> 
+* New Business: <a href="http://www.startribune.com/givemn-retools-to-the-max-after-2013-website-crash/254742841/" target="_blank">GiveMN avoids another crash by switching to this scalable platform</a>
 * Largest single-day crowdfunding event on record
 * Delighted clients
 

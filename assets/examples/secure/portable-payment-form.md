@@ -1,6 +1,7 @@
 ---
 layout: examples
 permalink: /examples/secure/
+sitemap: false
 title: Secure Portable Payment Form
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-15

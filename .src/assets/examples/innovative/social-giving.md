@@ -2,6 +2,7 @@
 layout: examples
 permalink: /examples/innovative/
 title: Innovation in Social Giving
+sitemap: false
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
 modified: 2015-05-15
 ---
@@ -21,7 +22,7 @@ This began with a set of social links, and grew to become personalized appeals f
 
 ### Single Page Application: Advocate Center
 
-* Author personal statement about a cause 
+* Author personal statement about a cause
 * Upload photos and video
 * Invite others to give and join teams
 * Edit personal profile at any time
