@@ -22,7 +22,13 @@ modified: 2015-05-15
 * Establish a broad matrix of supported browsers
 * Share form via click, copy and paste
 
-<img height="1646" width="1040" title="Fully branded registration form" alt="Fully branded registration form" src="form-rr-branded.png?__inline=true" />
+<div style="height:1646px;" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+  <div class="flipper">
+    <div class="front" style="background-image: url(/assets/examples/secure/form-rr-branded.png)" title="Fully branded registration form" alt="Fully branded registration form"></div>
+    <div class="back" style="background-image: url(/assets/examples/secure/form-rr-branded-js.png)"></div>
+  </div>
+</div>
+
 
 ## Results
 * Concurrent rapid development iterations
@@ -32,4 +38,9 @@ modified: 2015-05-15
 * Core support for browsers more than a decade old
 * Rapid form sharing supports disaster response
 
-<img src="form-viral.png" title="Rapid Form Sharing Supports Disaster Response" alt="Rapid Form Sharing Supports Disaster Response" />
+<div style="height:1208px;" class="flip-container" ontouchstart="this.classList.toggle('hover');">
+  <div class="flipper">
+    <div class="front" style="background-image: url(/assets/examples/secure/form-viral.jpg)"  title="Rapid Form Sharing Supports Disaster Response" alt="Rapid Form Sharing Supports Disaster Response"></div>
+    <div class="back" style="background-image: url(/assets/examples/secure/form-viral-js.png)"></div>
+  </div>
+</div>

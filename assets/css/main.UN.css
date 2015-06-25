@@ -217,6 +217,89 @@ a:active {
   color: #6f6f6f;
 }
 
+.front {
+  /* image filled inline */
+  z-index: 2;
+}
+
+.back {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flip-container {
+  -webkit-perspective: 1000;
+  -moz-perspective: 1000;
+  -o-perspective: 1000;
+  perspective: 1000;
+  border: 5px silver groove;
+  border-radius: 1rem;
+  background-color: #e9f2e9;
+}
+
+.flip-container:before {
+  content: ' ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(/images/summer_field_1920x1170_progressive.jpg);
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  -ms-background-size: cover;
+  -o-background-size: cover;
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  opacity: .4;
+  border-radius: 1rem;
+}
+
+.flip-container:hover .flipper {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+  width: 1040px;
+  height: 1151px;
+}
+
+.flipper {
+  position: relative;
+  height: inherit;
+  -webkit-transition: .8s;
+  -webkit-transform-style: preserve-3d;
+  -moz-transition: .8s;
+  -moz-transform-style: preserve-3d;
+  -o-transition: .8s;
+  -o-transform-style: preserve-3d;
+  transition: .8s;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #272822 0 0 no-repeat;
+  border-radius: 1rem;
+  height: 100%;
+  width: 100%;
+}
+
 .btn {
   display: inline-block;
   margin-bottom: 20px;

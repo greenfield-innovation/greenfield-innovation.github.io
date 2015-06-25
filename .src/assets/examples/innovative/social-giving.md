@@ -27,7 +27,13 @@ This began with a set of social links, and grew to become personalized appeals f
 * Invite others to give and join teams
 * Edit personal profile at any time
 
-<img title="Personal Profile Editor" alt="Personal Profile Editor" width="1040" height="966"  src="profile-editor.png?__inline=true"/>
+<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+  <div class="flipper">
+    <div class="front" style="background-image: url(/assets/examples/innovative/profile-editor.png)"></div>
+    <div class="back" style="background-image: url(/assets/examples/innovative/profile-editor-js.png)"></div>
+  </div>
+</div>
+
 
 ### Personalization Components
 
@@ -44,4 +50,9 @@ This began with a set of social links, and grew to become personalized appeals f
 
 * Record levels of giving
 
-<img title="Personalized Giving Form" alt="Personalized Giving Form" width="1040" height="1357" src="../secure/form-app.png" />
+<div class="flip-container" ontouchstart="this.classList.toggle('hover');" style="height:1357px;">
+  <div class="flipper">
+    <div class="front" style="background-image: url(/assets/examples/secure/form-app.png); height:1357px;" title="Personalized Giving Form" alt="Personalized Giving Form"></div>
+    <div class="back" style="background-image: url(/assets/examples/secure/form-app-js.png); height:1357px;"></div>
+  </div>
+</div>
