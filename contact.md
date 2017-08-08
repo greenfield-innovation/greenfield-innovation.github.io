@@ -11,20 +11,18 @@ image:
 ---
 
 
-### Expinnovate LLC
+### ExpInnovate LLC
 
+#### Texas Secretary of State Filing
 
 Name: EXPINNOVATE LLC
 
 - dba Greenfield Innovation Group
 - dba GIG
 
+File Number: 0801918376
 
-Texas Secretary of State File Number: 0801918376
-
-
-Mailing Address: 
-
+Mailing Address: <br/>
   EXPINNOVATE LLC<br/>
   13359 North Highway 183, Suite 406.605<br/>
   Austin, TX 78750
