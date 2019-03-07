@@ -38,7 +38,7 @@ Get to sustainable, scalable and novel inventions with less ramp-up time. Ingrai
 ###	Pitfall Avoidance
 Familiarity with patterns and antipatterns means you will save time that would otherwise go to common mistakes.
 
-###Core Contrarian
+###	Core Contrarian
 There is no IP or disruptive advantage in approaching your core business in a conventional fashion. It is in our nature to challenge and beat the status quo.
 
 ###	Full-stack, UX-First
