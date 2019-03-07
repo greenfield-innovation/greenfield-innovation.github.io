@@ -3,7 +3,7 @@ layout: page
 permalink: /contact/
 title: Contact
 tags: [responsive, software development service, dev-on-demand, contract, hourly, retainer, senior user experience engineer]
-modified: 2017-08-08
+modified: 2019-03-07
 image:
   feature: 
   credit: 
@@ -12,6 +12,10 @@ image:
 
 
 ### ExpInnovate LLC
+
+Have a question or need development work?
+
+Write us: ***info(a)greenfieldinnovation.com***
 
 #### Texas Secretary of State Filing
 
@@ -24,7 +28,7 @@ File Number: 0801918376
 
 Mailing Address: <br/>
   EXPINNOVATE LLC<br/>
-  13359 North Highway 183, Suite 406.605<br/>
-  Austin, TX 78750
+  2028 E Ben White Blvd, Suite 240-3145<br/>
+  Austin TX 78741<br/>
 
 
